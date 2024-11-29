@@ -6,7 +6,7 @@ namespace EtatsPhysiques
     {
         public EtatPhysiquesStateMachine StateMachine { get; private set; }
 
-        public GameObject Player { get => StateMachine.player; }
+        public GameObject Player { get => StateMachine.Player; }
 
         public void Sm_Enter(EtatPhysiqueState from)
         {

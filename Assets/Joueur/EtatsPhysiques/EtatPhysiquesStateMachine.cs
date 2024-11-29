@@ -12,7 +12,7 @@ namespace EtatsPhysiques
         private EtatPhysiqueSolide physiqueSolide;
         private EtatPhysiqueVisqueux physiqueVisqueux;
 
-        public GameObject player;
+        public GameObject Player;
 
         public void setState(EtatsPhysiques etat)
         {
