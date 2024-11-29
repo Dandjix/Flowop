@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class playerMovement : MonoBehaviour
+public class joueurMouvement : MonoBehaviour
 {
     private new Rigidbody2D rigidbody;
     // Start is called before the first frame update
@@ -16,7 +16,7 @@ public class playerMovement : MonoBehaviour
     {
         if(Input.GetKey(KeyCode.LeftArrow))
         {
-            rigidbody.velocity = Vector2.left;
+            rigidbody.linearVelocity = Vector2.left;
         }
 
     }
