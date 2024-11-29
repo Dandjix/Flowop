@@ -4,9 +4,17 @@ namespace EtatsPhysiques
 
     public class EtatPhysiqueSolide : EtatPhysiqueState
     {
+        [SerializeField] private GameObject joueurSolide;
+
         protected override void enter(EtatPhysiqueState from)
         {
 
+            Player.SetActive(false);
+            Vector2 playerPosition = Player.transform.position;
+
+            Player = joueurSolide;
+            Player.transform.position = playerPosition;
+            Player.SetActive(true);
         }
 
         protected override void exit(EtatPhysiqueState from)

@@ -50,9 +50,9 @@ namespace EtatsPhysiques
             physiqueSolide = GetComponent<EtatPhysiqueSolide>();
             physiqueVisqueux = GetComponent <EtatPhysiqueVisqueux>();
 
-            physiqueGazeux.Sm_Setup(null);
-            physiqueSolide.Sm_Setup(null);
-            physiqueVisqueux.Sm_Setup(null);
+            physiqueGazeux.Sm_Setup(this);
+            physiqueSolide.Sm_Setup(this);
+            physiqueVisqueux.Sm_Setup(this);
 
             setState(EtatsPhysiques.Solide);
         }
