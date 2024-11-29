@@ -1,13 +1,18 @@
 namespace EtatsPhysiques
 {
+
     using UnityEngine;
 
+    [RequireComponent(typeof(EtatPhysiqueGazeux))]
+    [RequireComponent(typeof(EtatPhysiqueSolide))]
+    [RequireComponent(typeof (EtatPhysiqueVisqueux))]
     public class EtatPhysiquesStateMachine : MonoBehaviour
     {
-        [SerializeField] private EtatPhysiqueGazeux physiqueGazeux;
-        [SerializeField] private EtatPhysiqueSolide physiqueSolide;
-        [SerializeField] private EtatPhysiqueVisqueux physiqueVisqueux;
+        private EtatPhysiqueGazeux physiqueGazeux;
+        private EtatPhysiqueSolide physiqueSolide;
+        private EtatPhysiqueVisqueux physiqueVisqueux;
 
+        public GameObject player;
 
         public void setState(EtatsPhysiques etat)
         {
@@ -41,9 +46,13 @@ namespace EtatsPhysiques
 
         private void Start()
         {
-            physiqueGazeux.Sm_Exit(null);
-            physiqueSolide.Sm_Exit(null);
-            physiqueVisqueux.Sm_Exit(null);
+            physiqueGazeux = GetComponent<EtatPhysiqueGazeux>();
+            physiqueSolide = GetComponent<EtatPhysiqueSolide>();
+            physiqueVisqueux = GetComponent <EtatPhysiqueVisqueux>();
+
+            physiqueGazeux.Sm_Setup(null);
+            physiqueSolide.Sm_Setup(null);
+            physiqueVisqueux.Sm_Setup(null);
 
             setState(EtatsPhysiques.Solide);
         }

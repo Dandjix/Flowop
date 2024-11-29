@@ -14,6 +14,7 @@ public class joueurMouvement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        this.enabled = false;
         if(Input.GetKey(KeyCode.LeftArrow))
         {
             rigidbody.linearVelocity = Vector2.left;

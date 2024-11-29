@@ -1,6 +1,5 @@
 namespace EtatsPhysiques
 {
-
     using UnityEngine;
 
     public class EtatPhysiqueVisqueux : EtatPhysiqueState
