@@ -5,12 +5,14 @@ using static Codice.Client.Common.EventTracking.TrackFeatureUseEvent.Features.De
 public class destructeurVerre : MonoBehaviour
 {
     [SerializeField] private float verreDelaiDestruction = 0.0f;
-    [SerializeField] private float verrreDelaiRespawn = 4f;
+    [SerializeField] private float verreDelaiRespawn = 4f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         
     }
+
+    //si on attache les coroutines au joueur, elles s'arrêtent quand on change d'état
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -21,7 +23,26 @@ public class destructeurVerre : MonoBehaviour
                  var rb = GetComponent<Rigidbody2D>();
                     if (rb.IsTouching(collision.collider))
                     {
-                        StartCoroutine(detruitVerre(collision.gameObject));
+                        var verre = collision.gameObject;
+                        if (verre == null)
+                        {
+                            return;
+                        }
+                        if (verreDelaiDestruction > 0.0f)
+                        {
+                            if(verre.GetComponent<verreRespawn>() != null)
+                            {
+                                return;
+                            }
+                            var coroutineManager = verre.AddComponent<verreRespawn>();
+                            coroutineManager.StartCoroutine(detruitVerreCoroutine(verre, verreDelaiDestruction));
+                        }
+                        else
+                        {
+                            var velocity = collision.relativeVelocity;
+                            Debug.Log("collision at velocity : "+velocity.magnitude);
+                            detruitVerre(collision.gameObject);
+                        }
                     }
                 }
                 break;
@@ -29,29 +50,47 @@ public class destructeurVerre : MonoBehaviour
         }
     }
 
-    IEnumerator detruitVerre(GameObject verre)
+    IEnumerator detruitVerreCoroutine(GameObject verre, float timeToDestroy)
     {
-        if (verreDelaiDestruction > 0.0f)
-        {
-            yield return new WaitForSeconds(verreDelaiDestruction);
-        }
+        yield return new WaitForSeconds(timeToDestroy);
 
-        Vector2 vPos = verre.transform.position;
-        Vector2 vSize = verre.GetComponent<BoxCollider2D>().size;
-        verre.SetActive(false);
-        StartCoroutine(resetVerre(verre, vPos, vSize));
+        detruitVerre(verre);
     }
 
-    IEnumerator resetVerre(GameObject verre, Vector2 vPos, Vector2 vSize)
+    private void detruitVerre(GameObject verre)
     {
-        yield return new WaitForSeconds(verrreDelaiRespawn);
-        if (Physics2D.BoxCast(vPos, vSize, 0, new Vector2(0, 0)))
+        Vector2 vPos = verre.transform.position;
+        Vector2 vSize = verre.GetComponent<BoxCollider2D>().size;
+        setVerreVisible(verre,false);
+        var coroutineManager = verre.GetComponent<verreRespawn>();
+        if(coroutineManager == null)
         {
-            StartCoroutine(resetVerre(verre, vPos, vSize));
+            coroutineManager = verre.AddComponent<verreRespawn>();
         }
-        else
+
+        coroutineManager.StartCoroutine(resetVerre(verre, vPos, vSize, verreDelaiRespawn));
+    }
+
+    private void setVerreVisible(GameObject verre, bool visible)
+    {
+        verre.GetComponent<Renderer>().enabled = visible;
+        verre.GetComponent<Collider2D>().enabled = visible;
+    }
+
+    IEnumerator resetVerre(GameObject verre, Vector2 vPos, Vector2 vSize, float timeToWait)
+    {
+        yield return new WaitForSeconds(timeToWait);
+
+        bool objectInTheWay = true;
+
+        while (objectInTheWay)
         {
-            verre.SetActive(true);
+            yield return 0; //wait one frame
+            var result = Physics2D.BoxCast(vPos, vSize, 0, new Vector2(0, 0));
+            objectInTheWay = result.collider != null;
         }
+
+        setVerreVisible(verre, true);
+        Destroy(verre.GetComponent<verreRespawn>());
     }
 }
