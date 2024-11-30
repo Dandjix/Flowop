@@ -76,10 +76,10 @@ public class JoueurVisqueux : MonoBehaviour
 
         foreach (var bone in bones)
         {
-            var rb = bone.AddComponent<Rigidbody2D>();
+            var rb = bone.gameObject.AddComponent<Rigidbody2D>();
             rb.gravityScale = originalGravity;
 
-            bone.AddComponent<CircleCollider2D>();
+            bone.gameObject.AddComponent<CircleCollider2D>();
         }
 
 
