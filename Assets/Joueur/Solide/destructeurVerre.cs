@@ -5,13 +5,8 @@ using static Codice.Client.Common.EventTracking.TrackFeatureUseEvent.Features.De
 public class destructeurVerre : MonoBehaviour
 {
     [SerializeField] private float verreDelaiDestruction = 0.0f;
-    [SerializeField] private float verreDelaiRespawn = 4f;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
+    [SerializeField][Min(0.1f)] private float verreDelaiRespawn = 4f;
+    [SerializeField] private bool blowThrough = true;
     //si on attache les coroutines au joueur, elles s'arrêtent quand on change d'état
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -39,9 +34,14 @@ public class destructeurVerre : MonoBehaviour
                         }
                         else
                         {
-                            var velocity = collision.relativeVelocity;
-                            Debug.Log("collision at velocity : "+velocity.magnitude);
-                            detruitVerre(collision.gameObject);
+                            detruitVerre(verre);
+
+                            //TODO : ca marrche pas bien si le verre bouge
+                            if(blowThrough)
+                            {
+                                var velocity = collision.relativeVelocity;
+                                GetComponent<Rigidbody2D>().linearVelocity = -velocity;
+                            }
                         }
                     }
                 }

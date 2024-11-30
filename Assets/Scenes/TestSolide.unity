@@ -412,10 +412,6 @@ PrefabInstance:
       value: AllJoueursUnpacker
       objectReference: {fileID: 0}
     - target: {fileID: 3961922379694094215, guid: 858f407d5aca742468325a911dfc375f, type: 3}
-      propertyPath: verreDelaiRespawn
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3961922379694094215, guid: 858f407d5aca742468325a911dfc375f, type: 3}
       propertyPath: verrreDelaiRespawn
       value: 0.1
       objectReference: {fileID: 0}
