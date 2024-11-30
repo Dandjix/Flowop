@@ -8,8 +8,6 @@ public class rebondsTrampoline : MonoBehaviour
     {
         var trampoline = collision.gameObject;
 
-        Debug.Log("tag : "+trampoline.tag);
-
         if (trampoline.tag != "Trampoline")
             return;
 
