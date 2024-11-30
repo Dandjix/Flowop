@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      gel_dop0007_0: -1985678532360518363
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
