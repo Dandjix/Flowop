@@ -3,20 +3,36 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class joueurSolideMouvement : MonoBehaviour
+public class joueurVisqueuxMouvementDongchen : MonoBehaviour
 {
-    private new Rigidbody2D rigidbody;
+    private JoueurVisqueux joueurVisqueux;
+    private List<Rigidbody2D> rigidbodies = new List<Rigidbody2D>(12);
     [SerializeField] private float vitesse;
     [SerializeField] private float forceDeSaut;
     [SerializeField] private float dragDeSaut, dragDecrease;
     [SerializeField] private ContactFilter2D filterBas;
     [SerializeField] private float verreDetruitDelai = 10f;
-    private bool surSol => rigidbody.IsTouching(filterBas);
+    private bool surSol
+    {
+        get 
+        {
+            foreach (var rigidbody in rigidbodies) {
+                if (rigidbody.IsTouching(filterBas))
+                    return true;
+            }
+            return false;
+        }
+    }
+
     private bool sauter;
     // Start is called before the first frame update
     void Start()
     {
-        rigidbody = GetComponent<Rigidbody2D>();
+        joueurVisqueux = GetComponent<JoueurVisqueux>();
+        foreach (var bone in joueurVisqueux.GetSortedBones())
+        {
+            rigidbodies.Add(bone.GetComponent<Rigidbody2D>());
+        }
         sauter = false;
         dragDeSaut = -1;
     }
@@ -31,24 +47,35 @@ public class joueurSolideMouvement : MonoBehaviour
     {
         // Mouvement horizontal
         float hInupt = Input.GetAxis("Horizontal");
-        if(Mathf.Abs(hInupt) > 0.1)
+
+        if (Mathf.Abs(hInupt) > 0.1)
         {
-            rigidbody.linearVelocityX = vitesse * hInupt;
+            foreach (var rigidbody in rigidbodies)
+            {
+                rigidbody.linearVelocityX = vitesse * hInupt;
+            }
         }
+
 
         // Saut
         if (Input.GetKeyDown(KeyCode.Space) && surSol)
         {
-            rigidbody.AddForce(new Vector2(0, forceDeSaut), ForceMode2D.Impulse);
-            dragDeSaut = forceDeSaut;
-            sauter = true;
+            foreach (var rigidbody in rigidbodies)
+            {
+                rigidbody.AddForce(new Vector2(0, forceDeSaut), ForceMode2D.Impulse);
+                dragDeSaut = forceDeSaut;
+                sauter = true;
+            }
         }
         if (sauter)
         {
             if (Input.GetKey(KeyCode.Space) && dragDeSaut >= 0)
             {
-                rigidbody.AddForce(new Vector2(0, dragDeSaut), ForceMode2D.Force);
-                dragDeSaut -= dragDecrease * Time.fixedDeltaTime;
+                foreach (var rigidbody in rigidbodies)
+                {
+                    rigidbody.AddForce(new Vector2(0, dragDeSaut), ForceMode2D.Force);
+                    dragDeSaut -= dragDecrease * Time.fixedDeltaTime;
+                }
             }
             if (Input.GetKeyUp(KeyCode.Space))
             {
@@ -62,11 +89,15 @@ public class joueurSolideMouvement : MonoBehaviour
         switch (collision.gameObject.tag)
         {
             case "Verre":
-                if(rigidbody.IsTouching(collision.collider, filterBas))
+                foreach (var rigidbody in rigidbodies)
                 {
-                    StartCoroutine(detruitVerre(collision.gameObject));
+                    if (rigidbody.IsTouching(collision.collider, filterBas))
+                    {
+                        StartCoroutine(detruitVerre(collision.gameObject));
+                    }
                 }
-                break;
+            break;
+
         }
     }
 
