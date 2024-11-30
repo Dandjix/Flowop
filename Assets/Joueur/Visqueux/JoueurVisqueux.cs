@@ -80,6 +80,9 @@ public class JoueurVisqueux : MonoBehaviour
             rb.gravityScale = originalGravity;
 
             bone.gameObject.AddComponent<CircleCollider2D>();
+
+            var prendrePiece = bone.gameObject.AddComponent<PrendrePiece>();
+            prendrePiece.typePiece = PrendrePiece.TypePieceRamassee.PieceVerte;
         }
 
 

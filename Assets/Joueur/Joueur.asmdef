@@ -2,7 +2,8 @@
     "name": "Joueur",
     "rootNamespace": "",
     "references": [
-        "GUID:41524c21c95e5fe4dbc5b48bd21995a4"
+        "GUID:41524c21c95e5fe4dbc5b48bd21995a4",
+        "GUID:a5a5ecb5c53661f468c28d86aa78f158"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
