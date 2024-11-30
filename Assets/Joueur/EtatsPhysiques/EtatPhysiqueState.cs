@@ -26,7 +26,7 @@ namespace EtatsPhysiques
         public void Sm_Setup(EtatPhysiquesStateMachine stateMachine)
         {
             StateMachine = stateMachine;
-            Sm_Exit(null);
+            //Sm_Exit(null); //causes bugs at initialization
         }
 
         protected abstract void enter(EtatPhysiqueState from);
