@@ -120,7 +120,9 @@ public class VisqueuxBone : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if(joueurVisqueux.FixedFramesTillNextStick <= 0 && !springJointOpposite.gameObject.GetComponent<VisqueuxBone>().Sticking)
+        if(joueurVisqueux.FixedFramesTillNextStick <= 0 
+            && collision.collider.gameObject.layer == LayerMask.NameToLayer("Rocks")
+            && !springJointOpposite.gameObject.GetComponent<VisqueuxBone>().Sticking)
         {
             Sticking = true;
             joueurVisqueux.FixedFramesTillNextStick = fixedFramesBetweenStick;

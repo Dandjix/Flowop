@@ -33,7 +33,7 @@ public class EssaimDeParticules : MonoBehaviour
             particule.transform.position = positionInitiale;
 
             // Initialisation de la vélocité des particules (peut être modifié par la suite)
-            rb.velocity = Vector2.zero; // On commence avec une vélocité nulle
+            rb.linearVelocity = Vector2.zero; // On commence avec une vélocité nulle
         }
     }
 
@@ -51,10 +51,10 @@ public class EssaimDeParticules : MonoBehaviour
             Vector2 directionVersCentre = (transform.position - rb.transform.position).normalized;
 
             // Calculer la nouvelle vélocité avec Lerp et ajouter le facteur aléatoire
-            Vector2 nouvelleVitesse = Vector2.Lerp(rb.velocity, directionVersCentre * vitesseLerp + directionAleatoire, Time.deltaTime);
+            Vector2 nouvelleVitesse = Vector2.Lerp(rb.linearVelocity, directionVersCentre * vitesseLerp + directionAleatoire, Time.deltaTime);
 
             // Appliquer la nouvelle vélocité à la particule
-            rb.velocity = nouvelleVitesse;
+            rb.linearVelocity = nouvelleVitesse;
 
             // Vérification et écartement des particules entre elles pour éviter la superposition excessive
             EviterSuperposition(rb);
@@ -71,7 +71,7 @@ public class EssaimDeParticules : MonoBehaviour
         }
 
         // Appliquer la somme des forces sur l'objet principal
-        rbPrincipal.velocity += forceSurObjetPrincipal * Time.deltaTime;
+        rbPrincipal.linearVelocity += forceSurObjetPrincipal * Time.deltaTime;
     }
 
     // Méthode pour empêcher la superposition excessive des particules
@@ -93,7 +93,7 @@ public class EssaimDeParticules : MonoBehaviour
                     float force = forceSeparation * (separationMinimale - distance) / separationMinimale;
 
                     // Appliquer cette force de séparation
-                    rb.velocity += directionDeSeparation * force * Time.deltaTime;
+                    rb.linearVelocity += directionDeSeparation * force * Time.deltaTime;
                 }
             }
         }
