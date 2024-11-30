@@ -19,5 +19,9 @@ public class ChangeStateControl : MonoBehaviour
         {
             stateMachine.setState(EtatsPhysiques.EtatsPhysiques.Visqueux);
         }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            stateMachine.setState(EtatsPhysiques.EtatsPhysiques.Gazeux);
+        }
     }
 }

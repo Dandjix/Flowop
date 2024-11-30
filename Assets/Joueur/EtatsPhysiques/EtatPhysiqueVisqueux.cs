@@ -5,6 +5,9 @@ namespace EtatsPhysiques
     public class EtatPhysiqueVisqueux : EtatPhysiqueState
     {
         [SerializeField] private GameObject joueurVisqueux;
+        [SerializeField] private float forceDeSaut = 5f;
+
+        private Rigidbody2D joueurRigidbody;
 
         protected override void enter(EtatPhysiqueState from)
         {
@@ -16,6 +19,12 @@ namespace EtatsPhysiques
             Player = joueurVisqueux;
             Player.transform.position = playerPosition;
             Player.SetActive(true);
+
+            joueurRigidbody = Player.GetComponent<Rigidbody2D>();
+            if (joueurRigidbody == null)
+            {
+                Debug.LogError("Le joueur gazeux n'a pas de Rigidbody2D");
+            }
         }
 
         protected override void exit(EtatPhysiqueState from)
@@ -26,7 +35,7 @@ namespace EtatsPhysiques
         // Update is called once per frame
         void Update()
         {
-
+            
         }
     }
 }
