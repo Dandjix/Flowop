@@ -6,6 +6,7 @@ TagManager:
   tags:
   - JoueurSolide
   - Verre
+  - Trampoline
   layers:
   - Default
   - TransparentFX

@@ -154,7 +154,7 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
---- !u!114 &1927567205797370995
+--- !u!114 &8437721988831348834
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -163,7 +163,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 1523673102924421642}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6826efcb3dea05949ac5a3e99c327cac, type: 3}
+  m_Script: {fileID: 11500000, guid: 613d08fb6311f914eb4069df1e7f4405, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  verreDelaiDestruction: 0
+  verreDelaiRespawn: 4
+  blowThrough: 1
+--- !u!114 &8420409455432670300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1523673102924421642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8fa0c3638544b04ebda502bb4acf385, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   vitesse: 5
