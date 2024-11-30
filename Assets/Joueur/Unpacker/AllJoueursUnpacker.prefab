@@ -251,6 +251,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3315962335479022557}
     m_Modifications:
+    - target: {fileID: -8009979389474252421, guid: 4a5670778cd0baf4ba35adec489e76fc, type: 3}
+      propertyPath: rayonFormation
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: -8009979389474252421, guid: 4a5670778cd0baf4ba35adec489e76fc, type: 3}
+      propertyPath: forceSeparation
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8009979389474252421, guid: 4a5670778cd0baf4ba35adec489e76fc, type: 3}
+      propertyPath: nombreDeParticules
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: -8009979389474252421, guid: 4a5670778cd0baf4ba35adec489e76fc, type: 3}
+      propertyPath: facteurMouvementAleatoire
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1523673102924421642, guid: 4a5670778cd0baf4ba35adec489e76fc, type: 3}
       propertyPath: m_Name
       value: JoueurGazeux
