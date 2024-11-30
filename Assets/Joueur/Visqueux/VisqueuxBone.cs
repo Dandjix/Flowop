@@ -57,6 +57,9 @@ public class VisqueuxBone : MonoBehaviour
 
     private JoueurVisqueux joueurVisqueux;
 
+    private Vector2 adjacentConnectedAnchor;
+    private Vector2 oppositeConnectedAnchor;
+
     public void Attach(Transform boneAdjacent, Transform boneOpposite, JoueurVisqueux joueurVisqueux)
     {
         this.joueurVisqueux = joueurVisqueux;
@@ -64,10 +67,16 @@ public class VisqueuxBone : MonoBehaviour
         springJointAdjacent = gameObject.AddComponent<SpringJoint2D>();
         springJointAdjacent.connectedBody = boneAdjacent.GetComponent<Rigidbody2D>();
         springJointAdjacent.autoConfigureConnectedAnchor = true;
+        springJointAdjacent.autoConfigureDistance = true;
+        //springJointAdjacent.distance = joueurVisqueux.AdjacentSpringDistance;
+        //adjacentConnectedAnchor = springJointAdjacent.connectedAnchor;
 
         springJointOpposite = gameObject.AddComponent<SpringJoint2D>();
         springJointOpposite.connectedBody = boneOpposite.GetComponent<Rigidbody2D>();
         springJointOpposite.autoConfigureConnectedAnchor = true;
+        springJointOpposite.autoConfigureDistance = true;
+        //springJointOpposite.distance = joueurVisqueux.OppositeSpringDistance;
+        //oppositeConnectedAnchor = springJointOpposite.connectedAnchor;
 
         fixedJoint = gameObject.AddComponent<FixedJoint2D>();
         fixedJoint.enabled = false;
@@ -107,13 +116,6 @@ public class VisqueuxBone : MonoBehaviour
         get => fixedJoint.enabled;
         set
         {
-            //if (value == sticking)
-            //    return;
-
-            //rigidbody.useFullKinematicContacts = value;
-            //stickPosition = transform.position;
-            //sticking = value;
-
             fixedJoint.enabled = value;
         }
     }
@@ -127,9 +129,5 @@ public class VisqueuxBone : MonoBehaviour
             Sticking = true;
             joueurVisqueux.FixedFramesTillNextStick = fixedFramesBetweenStick;
         }
-        //if (joueurVisqueux.AllowSticking && LayerMask.LayerToName(collision.collider.gameObject.layer)=="")
-        //{
-
-        //}
     }
 }

@@ -13,16 +13,7 @@ namespace EtatsPhysiques
 
             Vector2 playerPosition;
 
-            if (fromState is EtatPhysiqueVisqueux )
-            {
-                var stateVisqueux = fromState as EtatPhysiqueVisqueux;
-                playerPosition = stateVisqueux.Center;
-            }
-            else
-            {
-                playerPosition = Player.transform.position;
-            }
-
+            playerPosition = Player.transform.position;
 
             Player = joueurSolide;
             Player.transform.position = playerPosition;
