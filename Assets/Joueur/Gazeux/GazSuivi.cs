@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EssaimDeParticules : MonoBehaviour
+public class GazSuivi : MonoBehaviour
 {
     [SerializeField] private GameObject particulePrefab;       // Le prefab de la particule
     [SerializeField] private int nombreDeParticules = 15;      // Nombre de particules dans l'essaim
@@ -17,24 +17,7 @@ public class EssaimDeParticules : MonoBehaviour
 
     void Start()
     {
-        particulesRigidbodies = new List<Rigidbody2D>();
-        rbPrincipal = GetComponent<Rigidbody2D>();
-
-        // Initialisation des particules
-        for (int i = 0; i < nombreDeParticules; i++)
-        {
-            GameObject particule = Instantiate(particulePrefab, transform.position, Quaternion.identity);
-            Rigidbody2D rb = particule.GetComponent<Rigidbody2D>();
-            particulesRigidbodies.Add(rb);
-
-            // Position initiale autour du centre
-            float angle = i * Mathf.PI * 2f / nombreDeParticules;
-            Vector3 positionInitiale = transform.position + new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0) * rayonFormation;
-            particule.transform.position = positionInitiale;
-
-            // Initialisation de la vélocité des particules (peut être modifié par la suite)
-            rb.linearVelocity = Vector2.zero; // On commence avec une vélocité nulle
-        }
+        
     }
 
     void Update()
@@ -72,6 +55,42 @@ public class EssaimDeParticules : MonoBehaviour
 
         // Appliquer la somme des forces sur l'objet principal
         rbPrincipal.linearVelocity += forceSurObjetPrincipal * Time.deltaTime;
+    }
+
+    public void CreerParticules()
+    {
+        Debug.Log("TEST");
+        particulesRigidbodies = new List<Rigidbody2D>();
+        rbPrincipal = GetComponent<Rigidbody2D>();
+
+        for (int i = 0; i < nombreDeParticules; i++)
+        {
+            GameObject particule = Instantiate(particulePrefab, transform.position, Quaternion.identity);
+            Rigidbody2D rb = particule.GetComponent<Rigidbody2D>();
+            particulesRigidbodies.Add(rb);
+
+            // Position initiale autour du centre
+            float angle = i * Mathf.PI * 2f / nombreDeParticules;
+            Vector3 positionInitiale = transform.position;
+            particule.transform.position = positionInitiale;
+
+            // Initialisation de la vélocité des particules
+            rb.linearVelocity = Vector2.zero; // On commence avec une vélocité nulle
+        }
+    }
+    public void DetruireParticules()
+    {
+        foreach (var rb in particulesRigidbodies)
+        {
+            if (rb != null)
+            {
+                Destroy(rb.gameObject); 
+                Debug.Log("test");
+            }
+        }
+
+        // Vider la liste après destruction
+        particulesRigidbodies.Clear();
     }
 
     // Méthode pour empêcher la superposition excessive des particules

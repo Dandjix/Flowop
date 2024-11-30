@@ -27,11 +27,21 @@
             {
                 Debug.LogError("Le joueur gazeux n'a pas de Rigidbody2D");
             }
+            Debug.Log("TEST");
+            GazSuivi gaz = Player.GetComponent<GazSuivi>();
+            if (gaz != null)
+            {
+                gaz.CreerParticules();
+            }
         }
 
-        protected override void exit(EtatPhysiqueState from)
+        protected override void exit(EtatPhysiqueState to)
         {
-            
+            GazSuivi gaz = Player.GetComponent<GazSuivi>();
+            if (gaz != null)
+            {
+                gaz.DetruireParticules();
+            }
         }
 
         private void Update()

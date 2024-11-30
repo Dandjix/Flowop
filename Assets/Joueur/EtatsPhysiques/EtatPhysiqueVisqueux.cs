@@ -4,26 +4,28 @@ namespace EtatsPhysiques
 
     public class EtatPhysiqueVisqueux : EtatPhysiqueState
     {
-        [SerializeField] private GameObject joueurVisqueux;
+        private GameObject playerPositionDummy;
+
+        [SerializeField] private GameObject joueurVisqueux_Prefab;
 
         private void Awake()
         {
-            joueurVisqueux.GetComponent<JoueurVisqueux>().Setup();
+            playerPositionDummy = new GameObject("Player position dummy from visqueux");
         }
 
-        public Vector2 Center { get
-            {
-                var joueur = joueurVisqueux.GetComponent<JoueurVisqueux>();
-                return joueur.Center;
-            }
-            private set
-            {
-                Vector2 blobPosition = Center;
-                var joueur = joueurVisqueux.GetComponent<JoueurVisqueux>();
+        //public Vector2 Center { get
+        //    {
+        //        var joueur = joueurVisqueux_Prefab.GetComponent<JoueurVisqueux>();
+        //        return joueur.Center;
+        //    }
+        //    private set
+        //    {
+        //        Vector2 blobPosition = Center;
+        //        var joueur = joueurVisqueux_Prefab.GetComponent<JoueurVisqueux>();
 
-                joueur.Center = value;
-            }
-        }
+        //        joueur.Center = value;
+        //    }
+        //}
 
         protected override void enter(EtatPhysiqueState from)
         {
@@ -32,23 +34,34 @@ namespace EtatsPhysiques
             Vector2 playerPosition = Player.transform.position;
 
 
-            Player = joueurVisqueux;
+            Player = Instantiate(joueurVisqueux_Prefab);
 
             JoueurVisqueux joueurVisqueux_Component = Player.GetComponent<JoueurVisqueux>();
 
-            //joueurVisqueux_Component.ResetBonesPositions();
-            joueurVisqueux_Component.Center = playerPosition;
+            Player.transform.position = playerPosition;
+
+            joueurVisqueux_Component.GenerateSprings();
 
             Player.SetActive(true);
 
             //Debug.Log("entering : " + Player.name);
         }
 
+        /// <summary>
+        /// sors de l'état, renvoyant la position du joueur.
+        /// </summary>
+        /// <param name="from"></param>
+        /// <returns></returns>
         protected override void exit(EtatPhysiqueState from)
         {
-            //Debug.Log("exiting : " + Player.name);
             JoueurVisqueux joueurVisqueux = Player.GetComponent<JoueurVisqueux>();
-            joueurVisqueux.UnStick(0);
+            Vector2 pos = joueurVisqueux.Center;
+
+            Destroy(Player);
+
+            playerPositionDummy.transform.position = pos;
+
+            Player = playerPositionDummy;
         }
     }
 }
