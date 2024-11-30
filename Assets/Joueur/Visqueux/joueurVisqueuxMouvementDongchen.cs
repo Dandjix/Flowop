@@ -58,10 +58,17 @@ public class joueurVisqueuxMouvementDongchen : MonoBehaviour
             }
         }
 
+        if (Input.GetKey(KeyCode.E))
+        {
+            joueurVisqueux.UnStick(0.1f);
+        }
+
 
         // Saut
         if (Input.GetKeyDown(KeyCode.Space) && surSol)
         {
+            joueurVisqueux.UnStick(0.3f);
+
             foreach (var rigidbody in rigidbodies)
             {
                 rigidbody.AddForce(new Vector2(0, forceDeSaut), ForceMode2D.Impulse);
