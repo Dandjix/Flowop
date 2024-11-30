@@ -260,6 +260,7 @@ GameObject:
   - component: {fileID: 2307031761002598610}
   - component: {fileID: 3547631125251497498}
   - component: {fileID: 6300721238136340137}
+  - component: {fileID: 2139686739748376127}
   m_Layer: 0
   m_Name: JoueurVisqueux
   m_TagString: Untagged
@@ -398,6 +399,18 @@ MonoBehaviour:
   damping_opposite: 0.547
   originalGravity: 1
   FixedFramesTillNextStick: 0
+--- !u!114 &2139686739748376127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4791489241466784688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61216136f27be6bd89cd814180ce133a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5961873840575675703
 GameObject:
   m_ObjectHideFlags: 0

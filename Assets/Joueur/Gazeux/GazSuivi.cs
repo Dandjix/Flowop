@@ -71,7 +71,7 @@ public class GazSuivi : MonoBehaviour
 
             // Position initiale autour du centre
             float angle = i * Mathf.PI * 2f / nombreDeParticules;
-            Vector3 positionInitiale = transform.position + new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0) * rayonFormation;
+            Vector3 positionInitiale = transform.position;
             particule.transform.position = positionInitiale;
 
             // Initialisation de la vélocité des particules
