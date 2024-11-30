@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: platformPack_tilesheet_53 1
+  m_Name: spritesheet_ground_16 1
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: -906484415, guid: 2e9de52462bbaaa428756ea17129beed, type: 3}
-  m_Color: {r: 0.49056602, g: 0.49056602, b: 0.49056602, a: 1}
+  m_Sprite: {fileID: 883371812, guid: 7b51dd4c285907e40a09048c83d8a0cf, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
     e01: 0
