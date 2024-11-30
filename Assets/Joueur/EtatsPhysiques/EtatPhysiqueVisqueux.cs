@@ -29,7 +29,6 @@ namespace EtatsPhysiques
 
         protected override void enter(EtatPhysiqueState from)
         {
-
             Player.SetActive(false);
             Vector2 playerPosition = Player.transform.position;
 
@@ -44,6 +43,13 @@ namespace EtatsPhysiques
 
             Player.SetActive(true);
 
+
+
+            foreach (var bone in joueurVisqueux_Component.GetSortedBones())
+            {
+                bone.GetComponent<Rigidbody2D>().linearVelocity = StateMachine.etatPhysiqueStore.linearVelocity;
+            }
+
             //Debug.Log("entering : " + Player.name);
         }
 
@@ -57,11 +63,22 @@ namespace EtatsPhysiques
             JoueurVisqueux joueurVisqueux = Player.GetComponent<JoueurVisqueux>();
             Vector2 pos = joueurVisqueux.Center;
 
+            var bones = joueurVisqueux.GetSortedBones();
+            Vector2 oldVelocity = Vector2.zero;
+            foreach (var bone in bones) {
+                oldVelocity += bone.GetComponent<Rigidbody2D>().linearVelocity;
+            }
+            oldVelocity /= bones.Count;
+
             Destroy(Player);
 
             playerPositionDummy.transform.position = pos;
 
             Player = playerPositionDummy;
+
+            StateMachine.etatPhysiqueStore.linearVelocity = oldVelocity;
         }
+
+
     }
 }
