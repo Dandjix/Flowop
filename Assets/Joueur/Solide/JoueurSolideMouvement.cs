@@ -12,13 +12,13 @@ public class joueurSolideMouvement : MonoBehaviour
     [SerializeField] private ContactFilter2D filterBas;
     [SerializeField] private float verreDetruitDelai = 10f;
     private bool surSol => rigidbody.IsTouching(filterBas);
-    private float radius;
-    private bool sauter = false;
+    private bool sauter;
     // Start is called before the first frame update
     void Start()
     {
         rigidbody = GetComponent<Rigidbody2D>();
-        radius = GetComponent<CircleCollider2D>().radius;
+        sauter = false;
+        dragDeSaut = -1;
     }
 
     // Update is called once per frame
@@ -31,7 +31,10 @@ public class joueurSolideMouvement : MonoBehaviour
     {
         // Mouvement horizontal
         float hInupt = Input.GetAxis("Horizontal");
-        rigidbody.linearVelocityX = vitesse * hInupt;
+        if(Mathf.Abs(hInupt) > 0.1)
+        {
+            rigidbody.linearVelocityX = vitesse * hInupt;
+        }
 
         // Saut
         if (Input.GetKeyDown(KeyCode.Space) && surSol)
@@ -40,12 +43,16 @@ public class joueurSolideMouvement : MonoBehaviour
             dragDeSaut = forceDeSaut;
             sauter = true;
         }
-        if (Input.GetKey(KeyCode.Space) && sauter)
+        if (sauter)
         {
-            if (dragDeSaut >= 0)
+            if (Input.GetKey(KeyCode.Space) && dragDeSaut >= 0)
             {
                 rigidbody.AddForce(new Vector2(0, dragDeSaut), ForceMode2D.Force);
-                dragDeSaut -= dragDecrease * Time.deltaTime;
+                dragDeSaut -= dragDecrease * Time.fixedDeltaTime;
+            }
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                sauter = false;
             }
         }
     }

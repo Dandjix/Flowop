@@ -384,6 +384,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1909744352899708357, guid: 858f407d5aca742468325a911dfc375f, type: 3}
+      propertyPath: m_LinearDamping
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3315962335479022557, guid: 858f407d5aca742468325a911dfc375f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.7996907
@@ -427,6 +431,14 @@ PrefabInstance:
     - target: {fileID: 3678720970884796069, guid: 858f407d5aca742468325a911dfc375f, type: 3}
       propertyPath: m_Name
       value: AllJoueursUnpacker
+      objectReference: {fileID: 0}
+    - target: {fileID: 6423052472190968726, guid: 858f407d5aca742468325a911dfc375f, type: 3}
+      propertyPath: vitesseMax
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6423052472190968726, guid: 858f407d5aca742468325a911dfc375f, type: 3}
+      propertyPath: forceMouvement
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2424438478194666247}
   - component: {fileID: 6441161519705655840}
   - component: {fileID: 718708150621066154}
-  - component: {fileID: 794394506675446610}
+  - component: {fileID: 1927567205797370995}
   m_Layer: 0
   m_Name: JoueurSolide
   m_TagString: Untagged
@@ -106,7 +106,7 @@ Rigidbody2D:
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 99434f85611f5794395167e9b6555c18, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -153,7 +153,7 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
---- !u!114 &794394506675446610
+--- !u!114 &1927567205797370995
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -162,6 +162,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 1523673102924421642}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 824ab07ea95eabc43bdce01bc962a806, type: 3}
+  m_Script: {fileID: 11500000, guid: 6826efcb3dea05949ac5a3e99c327cac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vitesse: 5
+  forceDeSaut: 5
+  dragDeSaut: 5
+  dragDecrease: 5
+  filterBas:
+    useTriggers: 0
+    useLayerMask: 0
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 1
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 0
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 75
+    maxNormalAngle: 105
+  verreDetruitDelai: 0.5
