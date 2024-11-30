@@ -59,7 +59,6 @@ public class GazSuivi : MonoBehaviour
 
     public void CreerParticules()
     {
-        Debug.Log("TEST");
         particulesRigidbodies = new List<Rigidbody2D>();
         rbPrincipal = GetComponent<Rigidbody2D>();
 
