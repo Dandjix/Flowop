@@ -199,34 +199,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6926128339774892344, guid: 858f407d5aca742468325a911dfc375f, type: 3}
-      propertyPath: vitesseLerp
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 6926128339774892344, guid: 858f407d5aca742468325a911dfc375f, type: 3}
-      propertyPath: rayonFormation
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 6926128339774892344, guid: 858f407d5aca742468325a911dfc375f, type: 3}
-      propertyPath: forceSeparation
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6926128339774892344, guid: 858f407d5aca742468325a911dfc375f, type: 3}
-      propertyPath: distanceMaximale
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6926128339774892344, guid: 858f407d5aca742468325a911dfc375f, type: 3}
-      propertyPath: nombreDeParticules
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 6926128339774892344, guid: 858f407d5aca742468325a911dfc375f, type: 3}
-      propertyPath: separationMinimale
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6926128339774892344, guid: 858f407d5aca742468325a911dfc375f, type: 3}
-      propertyPath: facteurMouvementAleatoire
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 8625220086833442036, guid: 858f407d5aca742468325a911dfc375f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.13
