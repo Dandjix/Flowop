@@ -41,7 +41,7 @@ namespace EtatsPhysiques
             var oldState = currentState;
 
             currentState = etat;
-            etat.Sm_Enter(currentState);
+            etat.Sm_Enter(oldState);
         }
 
         private void Start()
