@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 11a59291ee861ab0ca58440bf78ea9c6
+guid: e8afe657486c8b3c3aa64419c880c82d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7285472943232684886
-    second: gel_dop0008_0
+      213: 3325102050242608316
+    second: GLACE_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: gel_dop0008_0
+      name: GLACE_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 512
-        height: 512
+        width: 128
+        height: 77
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: aac65ed45fcc4ea90800000000000000
-      internalID: -7285472943232684886
+      spriteID: cbc32a292b2252e20800000000000000
+      internalID: 3325102050242608316
       vertices: []
       indices: 
       edges: []

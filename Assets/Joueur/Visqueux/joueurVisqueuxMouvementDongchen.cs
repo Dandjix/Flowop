@@ -52,7 +52,14 @@ public class joueurVisqueuxMouvementDongchen : MonoBehaviour
         {
             foreach (var rigidbody in rigidbodies)
             {
-                rigidbody.linearVelocityX = vitesse * hInupt;
+                float newVelocity = rigidbody.linearVelocityX + vitesse * hInupt;
+                if(Mathf.Abs(rigidbody.linearVelocityX + newVelocity) > vitesse && Mathf.Sign(newVelocity) == Mathf.Sign(rigidbody.linearVelocityX))
+                {
+                    float magnitude = Mathf.Max(Mathf.Abs(rigidbody.linearVelocityX), Mathf.Abs(vitesse * hInupt));
+                    newVelocity = Mathf.Sign(newVelocity) * magnitude;
+                    //make it so the added velocity doesnt exceed the max speed
+                }
+                rigidbody.linearVelocityX = newVelocity;
             }
         }
 
