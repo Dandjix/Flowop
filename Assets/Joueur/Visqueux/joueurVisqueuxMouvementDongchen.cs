@@ -11,7 +11,7 @@ public class joueurVisqueuxMouvementDongchen : MonoBehaviour
     [SerializeField] private float forceDeSaut;
     [SerializeField] private float dragDeSaut, dragDecrease;
     [SerializeField] private ContactFilter2D filterBas;
-    [SerializeField] private float verreDetruitDelai = 10f;
+
     private bool surSol
     {
         get 
@@ -81,45 +81,6 @@ public class joueurVisqueuxMouvementDongchen : MonoBehaviour
             {
                 sauter = false;
             }
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        switch (collision.gameObject.tag)
-        {
-            case "Verre":
-                foreach (var rigidbody in rigidbodies)
-                {
-                    if (rigidbody.IsTouching(collision.collider, filterBas))
-                    {
-                        StartCoroutine(detruitVerre(collision.gameObject));
-                    }
-                }
-            break;
-
-        }
-    }
-
-    IEnumerator detruitVerre(GameObject verre)
-    {
-        yield return new WaitForSeconds(verreDetruitDelai);
-        Vector2 vPos = verre.transform.position;
-        Vector2 vSize = verre.GetComponent<BoxCollider2D>().size;
-        verre.SetActive(false);
-        StartCoroutine(resetVerre(verre, vPos, vSize));
-    }
-
-    IEnumerator resetVerre(GameObject verre, Vector2 vPos, Vector2 vSize)
-    {
-        yield return new WaitForSeconds(verreDetruitDelai*3);
-        if (Physics2D.BoxCast(vPos, vSize, 0, new Vector2(0, 0)))
-        {
-            StartCoroutine(resetVerre(verre, vPos, vSize));
-        }
-        else
-        {
-            verre.SetActive(true);
         }
     }
 }
