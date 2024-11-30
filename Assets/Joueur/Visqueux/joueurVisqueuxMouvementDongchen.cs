@@ -52,7 +52,7 @@ public class joueurVisqueuxMouvementDongchen : MonoBehaviour
         {
             foreach (var rigidbody in rigidbodies)
             {
-                float newVelocity = rigidbody.linearVelocityX + vitesse * hInupt;
+                float newVelocity = vitesse * hInupt;
 
                 rigidbody.linearVelocityX = newVelocity;
             }
