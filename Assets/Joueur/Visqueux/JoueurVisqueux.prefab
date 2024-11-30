@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 2307031761002598610}
   - component: {fileID: 3547631125251497498}
   - component: {fileID: 6300721238136340137}
-  - component: {fileID: 2139686739748376127}
+  - component: {fileID: 7988038702834359258}
   m_Layer: 0
   m_Name: JoueurVisqueux
   m_TagString: Untagged
@@ -399,7 +399,7 @@ MonoBehaviour:
   damping_opposite: 0.547
   originalGravity: 1
   FixedFramesTillNextStick: 0
---- !u!114 &2139686739748376127
+--- !u!114 &7988038702834359258
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -408,9 +408,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 4791489241466784688}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61216136f27be6bd89cd814180ce133a, type: 3}
+  m_Script: {fileID: 11500000, guid: 6826efcb3dea05949ac5a3e99c327cac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vitesse: 5
+  forceDeSaut: 7
+  dragDeSaut: 5
+  dragDecrease: 5
+  filterBas:
+    useTriggers: 0
+    useLayerMask: 0
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 1
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 0
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 75
+    maxNormalAngle: 105
+  verreDetruitDelai: 0.5
 --- !u!1 &5961873840575675703
 GameObject:
   m_ObjectHideFlags: 0
