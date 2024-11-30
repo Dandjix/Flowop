@@ -5,9 +5,25 @@ namespace EtatsPhysiques
     public class EtatPhysiqueVisqueux : EtatPhysiqueState
     {
         [SerializeField] private GameObject joueurVisqueux;
-        [SerializeField] private float forceDeSaut = 5f;
 
-        private Rigidbody2D joueurRigidbody;
+        private void Awake()
+        {
+            joueurVisqueux.GetComponent<JoueurVisqueux>().Setup();
+        }
+
+        public Vector2 Center { get
+            {
+                var joueur = joueurVisqueux.GetComponent<JoueurVisqueux>();
+                return joueur.Center;
+            }
+            private set
+            {
+                Vector2 blobPosition = Center;
+                var joueur = joueurVisqueux.GetComponent<JoueurVisqueux>();
+
+                joueur.Center = value;
+            }
+        }
 
         protected override void enter(EtatPhysiqueState from)
         {
@@ -17,25 +33,22 @@ namespace EtatsPhysiques
 
 
             Player = joueurVisqueux;
-            Player.transform.position = playerPosition;
+
+            JoueurVisqueux joueurVisqueux_Component = Player.GetComponent<JoueurVisqueux>();
+
+            //joueurVisqueux_Component.ResetBonesPositions();
+            joueurVisqueux_Component.Center = playerPosition;
+
             Player.SetActive(true);
 
-            joueurRigidbody = Player.GetComponent<Rigidbody2D>();
-            if (joueurRigidbody == null)
-            {
-                Debug.LogError("Le joueur gazeux n'a pas de Rigidbody2D");
-            }
+            //Debug.Log("entering : " + Player.name);
         }
 
         protected override void exit(EtatPhysiqueState from)
         {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-            
+            //Debug.Log("exiting : " + Player.name);
+            JoueurVisqueux joueurVisqueux = Player.GetComponent<JoueurVisqueux>();
+            joueurVisqueux.UnStick(0);
         }
     }
 }
