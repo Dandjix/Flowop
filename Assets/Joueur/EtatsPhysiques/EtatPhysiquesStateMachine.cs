@@ -56,6 +56,17 @@ namespace EtatsPhysiques
 
             setState(EtatsPhysiques.Solide);
         }
+
+        public Vector2 getPlayerPosition()
+        {
+            if(currentState is EtatPhysiqueVisqueux)
+            {
+                var visqueuxPlayer = Player.GetComponent<JoueurVisqueux>();
+
+                return visqueuxPlayer.Center;
+            }
+            return Player.transform.position;
+        }
     }
 
     public enum EtatsPhysiques
