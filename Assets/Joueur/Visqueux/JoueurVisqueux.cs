@@ -72,23 +72,14 @@ public class JoueurVisqueux : MonoBehaviour
 
     public void GenerateSprings()
     {
-        Debug.Log("generating springs");
-        //while(transform.childCount>0)
-        //{
-        //    Destroy(transform.GetChild(0));
-        //}
-
-        //spriteSkin.gene
-
-
         var bones = GetSortedBones();
 
         foreach (var bone in bones)
         {
-            var rb = bone.AddComponent<Rigidbody2D>();
+            var rb = bone.gameObject.AddComponent<Rigidbody2D>();
             rb.gravityScale = originalGravity;
 
-            bone.AddComponent<CircleCollider2D>();
+            bone.gameObject.AddComponent<CircleCollider2D>();
         }
 
 
@@ -163,7 +154,7 @@ public class JoueurVisqueux : MonoBehaviour
         GenerateSprings();
     }
 
-    public Vector2 Center
+    public Vector2 Center 
     {
         get
         {
@@ -180,17 +171,23 @@ public class JoueurVisqueux : MonoBehaviour
 
             return posAvg;
         }
-        set
+        set //TODO: FIx this flipping the bones
         {
             Vector2 blobPosition = Center;
 
-            var bones = GetSortedBones();
+            Vector2 diff = value - blobPosition;
 
-            foreach (var bone in bones)
-            {
-                Vector2 localPos = blobPosition - (Vector2)bone.transform.position;
-                bone.position = value + localPos;
-            }
+            transform.position = (Vector2) transform.position + diff;
+
+            //var bones = GetSortedBones();
+
+            //foreach (var bone in bones)
+            //{
+            //    Vector2 localPos = (Vector2)bone.transform.position - blobPosition;
+            //    Vector2 outputPos = value + localPos;
+            //    bone.GetComponent<VisqueuxBone>().SetPosition(outputPos);
+            //    bone.position = value + localPos;
+            //}
         }
     }
 
