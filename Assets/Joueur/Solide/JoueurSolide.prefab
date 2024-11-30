@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 2424438478194666247}
   - component: {fileID: 6441161519705655840}
   - component: {fileID: 718708150621066154}
-  - component: {fileID: 1927567205797370995}
   - component: {fileID: 1665380713653168905}
+  - component: {fileID: 8420409455432670300}
+  - component: {fileID: 8437721988831348834}
   m_Layer: 0
   m_Name: JoueurSolide
   m_TagString: Untagged
@@ -80,7 +81,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 4730475118284054951, guid: 2f3aae32eb5a2264582fad653135702e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -154,6 +155,31 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
+--- !u!114 &1665380713653168905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1523673102924421642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93381ef330f0caf49b78f8a50e292ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8420409455432670300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1523673102924421642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8fa0c3638544b04ebda502bb4acf385, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reflectionFactor: 1
 --- !u!114 &8437721988831348834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,46 +195,3 @@ MonoBehaviour:
   verreDelaiDestruction: 0
   verreDelaiRespawn: 4
   blowThrough: 1
---- !u!114 &8420409455432670300
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1523673102924421642}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8fa0c3638544b04ebda502bb4acf385, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  vitesse: 5
-  forceDeSaut: 5
-  dragDeSaut: 5
-  dragDecrease: 5
-  filterBas:
-    useTriggers: 0
-    useLayerMask: 0
-    useDepth: 0
-    useOutsideDepth: 0
-    useNormalAngle: 1
-    useOutsideNormalAngle: 0
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 0
-    minDepth: 0
-    maxDepth: 0
-    minNormalAngle: 75
-    maxNormalAngle: 105
-  verreDetruitDelai: 0.5
---- !u!114 &1665380713653168905
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1523673102924421642}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93381ef330f0caf49b78f8a50e292ee6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
