@@ -412,7 +412,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vitesse: 5
-  forceDeSaut: 7
+  forceDeSaut: 9
   dragDeSaut: 5
   dragDecrease: 5
   filterBas:
@@ -429,7 +429,6 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 75
     maxNormalAngle: 105
-  verreDetruitDelai: 0.5
 --- !u!1 &5961873840575675703
 GameObject:
   m_ObjectHideFlags: 0
