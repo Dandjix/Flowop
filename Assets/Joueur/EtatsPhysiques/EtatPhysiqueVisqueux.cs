@@ -6,34 +6,22 @@ namespace EtatsPhysiques
     {
         [SerializeField] private GameObject joueurVisqueux;
 
-        private Vector2 Center { get
+        private void Awake()
+        {
+            joueurVisqueux.GetComponent<JoueurVisqueux>().Setup();
+        }
+
+        public Vector2 Center { get
             {
                 var joueur = joueurVisqueux.GetComponent<JoueurVisqueux>();
-                var bones = joueur.GetSortedBones();
-
-                Vector2 posSum = Vector2.zero;
-
-                foreach (var bone in bones)
-                {
-                    posSum = posSum + (Vector2)bone.position;
-                }
-
-                var posAvg = posSum/bones.Count;
-
-                return posAvg;
+                return joueur.Center;
             }
-            set
+            private set
             {
                 Vector2 blobPosition = Center;
-
                 var joueur = joueurVisqueux.GetComponent<JoueurVisqueux>();
-                var bones = joueur.GetSortedBones();
 
-                foreach (var bone in bones)
-                {
-                    Vector2 localPos = blobPosition - (Vector2)bone.transform.position;
-                    bone.position = value + localPos;
-                }
+                joueur.Center = value;
             }
         }
 
@@ -45,19 +33,22 @@ namespace EtatsPhysiques
 
 
             Player = joueurVisqueux;
-            Player.transform.position = playerPosition;
+
+            JoueurVisqueux joueurVisqueux_Component = Player.GetComponent<JoueurVisqueux>();
+
+            //joueurVisqueux_Component.ResetBonesPositions();
+            joueurVisqueux_Component.Center = playerPosition;
+
             Player.SetActive(true);
+
+            //Debug.Log("entering : " + Player.name);
         }
 
         protected override void exit(EtatPhysiqueState from)
         {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
+            //Debug.Log("exiting : " + Player.name);
+            JoueurVisqueux joueurVisqueux = Player.GetComponent<JoueurVisqueux>();
+            joueurVisqueux.UnStick(0);
         }
     }
 }

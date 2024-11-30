@@ -1,12 +1,15 @@
+using EtatsPhysiques;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.U2D.Animation;
 using UnityEngine.XR;
 
-[RequireComponent(typeof (SpriteSkin))]
+[RequireComponent(typeof(SpriteSkin))]
 public class JoueurVisqueux : MonoBehaviour
 {
+    //[SerializeField] private EtatPhysiqueVisqueux etatPhysiqueVisqueux;
+
     private SpriteSkin spriteSkin;
 
     private static int getBoneNumber(Transform bone)
@@ -15,17 +18,17 @@ public class JoueurVisqueux : MonoBehaviour
     }
 
     [SerializeField] private float frequency_adjacent;
-    public float Frequency_Adjacent { get 
-        { 
+    public float Frequency_Adjacent { get
+        {
             return frequency_adjacent;
-        } 
-        set 
-        { 
-            frequency_adjacent = value; 
+        }
+        set
+        {
+            frequency_adjacent = value;
             ApplyValues();
-        } 
+        }
     }
-    [Range(0,1)][SerializeField] private float damping_adjacent;
+    [Range(0, 1)][SerializeField] private float damping_adjacent;
     public float Damping_Adjacent
     {
         get
@@ -42,12 +45,14 @@ public class JoueurVisqueux : MonoBehaviour
     [SerializeField] private float frequency_opposite;
     [Range(0, 1)][SerializeField] private float damping_opposite;
 
+    [SerializeField] private float originalGravity = 1;
+
     public List<Transform> GetSortedBones()
     {
         List<Transform> sortedBones = new List<Transform>(transform.childCount);
         foreach (Transform child in transform)
         {
-            if(!child.name.StartsWith("bone_"))
+            if (!child.name.StartsWith("bone_"))
             {
                 continue;
             }
@@ -65,8 +70,9 @@ public class JoueurVisqueux : MonoBehaviour
         return sortedBones;
     }
 
-    public void generateSprings()
+    public void GenerateSprings()
     {
+        Debug.Log("generating springs");
         //while(transform.childCount>0)
         //{
         //    Destroy(transform.GetChild(0));
@@ -79,7 +85,9 @@ public class JoueurVisqueux : MonoBehaviour
 
         foreach (var bone in bones)
         {
-            bone.AddComponent<Rigidbody2D>();
+            var rb = bone.AddComponent<Rigidbody2D>();
+            rb.gravityScale = originalGravity;
+
             bone.AddComponent<CircleCollider2D>();
         }
 
@@ -97,8 +105,25 @@ public class JoueurVisqueux : MonoBehaviour
 
             var visqueuxBone = bone.AddComponent<VisqueuxBone>();
 
-            visqueuxBone.Attach(bones[indexOfBoneToTheRight], bones[indexOfOpposingBone]);
+            visqueuxBone.Attach(bones[indexOfBoneToTheRight], bones[indexOfOpposingBone], this);
 
+        }
+    }
+
+    [HideInInspector] public int FixedFramesTillNextStick = 0;
+
+    private float gracePeriod = 0f;
+
+    public bool AllowSticking => gracePeriod > 0f;
+
+    public void UnStick(float gracePeriodTotal)
+    {
+        gracePeriod = gracePeriodTotal;
+        foreach(var bone in GetSortedBones())
+        {
+            var visqueuxBone = bone.GetComponent<VisqueuxBone>();
+
+            visqueuxBone.Sticking = false;
         }
     }
 
@@ -119,15 +144,63 @@ public class JoueurVisqueux : MonoBehaviour
 
     private void Update()
     {
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         ApplyValues();
-        #endif
+#endif
+
+        gracePeriod = Mathf.Max(0, gracePeriod - Time.deltaTime);
     }
 
-    private void Awake()
+    private void FixedUpdate()
+    {
+        FixedFramesTillNextStick = Mathf.Max(0, FixedFramesTillNextStick - 1);
+    }
+
+    public void Setup()
     {
         spriteSkin = GetComponent<SpriteSkin>();
 
-        generateSprings();
+        GenerateSprings();
+    }
+
+    public Vector2 Center
+    {
+        get
+        {
+            var bones = GetSortedBones();
+
+            Vector2 posSum = Vector2.zero;
+
+            foreach (var bone in bones)
+            {
+                posSum = posSum + (Vector2)bone.position;
+            }
+
+            var posAvg = posSum / bones.Count;
+
+            return posAvg;
+        }
+        set
+        {
+            Vector2 blobPosition = Center;
+
+            var bones = GetSortedBones();
+
+            foreach (var bone in bones)
+            {
+                Vector2 localPos = blobPosition - (Vector2)bone.transform.position;
+                bone.position = value + localPos;
+            }
+        }
+    }
+
+    public void ResetBonesPositions()
+    {
+        Vector2 center = Center;
+        foreach(var bone in GetSortedBones())
+        {
+            bone.position = center + bone.GetComponent<VisqueuxBone>().originalLocalPos;
+            bone.rotation = bone.GetComponent<VisqueuxBone>().originalRotation;
+        }
     }
 }

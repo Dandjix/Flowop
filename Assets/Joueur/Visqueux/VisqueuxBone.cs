@@ -53,8 +53,14 @@ public class VisqueuxBone : MonoBehaviour
 
     SpringJoint2D springJointAdjacent, springJointOpposite;
 
-    public void Attach(Transform boneAdjacent, Transform boneOpposite)
+    FixedJoint2D fixedJoint;
+
+    private JoueurVisqueux joueurVisqueux;
+
+    public void Attach(Transform boneAdjacent, Transform boneOpposite, JoueurVisqueux joueurVisqueux)
     {
+        this.joueurVisqueux = joueurVisqueux;
+
         springJointAdjacent = gameObject.AddComponent<SpringJoint2D>();
         springJointAdjacent.connectedBody = boneAdjacent.GetComponent<Rigidbody2D>();
         springJointAdjacent.autoConfigureConnectedAnchor = true;
@@ -62,6 +68,66 @@ public class VisqueuxBone : MonoBehaviour
         springJointOpposite = gameObject.AddComponent<SpringJoint2D>();
         springJointOpposite.connectedBody = boneOpposite.GetComponent<Rigidbody2D>();
         springJointOpposite.autoConfigureConnectedAnchor = true;
+
+        fixedJoint = gameObject.AddComponent<FixedJoint2D>();
+        fixedJoint.enabled = false;
     }
 
+    // sticky --
+
+    const int fixedFramesBetweenStick = 10;
+
+    private new Rigidbody2D rigidbody;
+
+    public Vector2 originalLocalPos { get; private set; }
+    public Quaternion originalRotation { get; private set; }
+
+    private void Awake()
+    {
+        originalLocalPos = transform.localPosition;
+        originalRotation = transform.rotation;
+    }
+
+    private void Start()
+    {
+        rigidbody = GetComponent<Rigidbody2D>();
+    }
+
+    private bool allowSticking
+    {
+        get
+        {
+            return false;
+        }
+    }
+
+    //private bool sticking = false;
+    public bool Sticking
+    {
+        get => fixedJoint.enabled;
+        set
+        {
+            //if (value == sticking)
+            //    return;
+
+            //rigidbody.useFullKinematicContacts = value;
+            //stickPosition = transform.position;
+            //sticking = value;
+
+            fixedJoint.enabled = value;
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if(joueurVisqueux.FixedFramesTillNextStick <= 0 && !springJointOpposite.gameObject.GetComponent<VisqueuxBone>().Sticking)
+        {
+            Sticking = true;
+            joueurVisqueux.FixedFramesTillNextStick = fixedFramesBetweenStick;
+        }
+        //if (joueurVisqueux.AllowSticking && LayerMask.LayerToName(collision.collider.gameObject.layer)=="")
+        //{
+
+        //}
+    }
 }
