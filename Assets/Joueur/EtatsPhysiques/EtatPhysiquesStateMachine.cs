@@ -14,6 +14,8 @@ namespace EtatsPhysiques
 
         public GameObject Player;
 
+        public EtatPhysiqueStore etatPhysiqueStore { get; private set; }
+
         public void setState(EtatsPhysiques etat)
         {
             switch (etat)
@@ -46,6 +48,8 @@ namespace EtatsPhysiques
 
         private void Start()
         {
+            etatPhysiqueStore = GetComponent<EtatPhysiqueStore>();
+
             physiqueGazeux = GetComponent<EtatPhysiqueGazeux>();
             physiqueSolide = GetComponent<EtatPhysiqueSolide>();
             physiqueVisqueux = GetComponent <EtatPhysiqueVisqueux>();

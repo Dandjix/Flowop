@@ -33,6 +33,8 @@
             {
                 gaz.CreerParticules();
             }
+
+            //TODO : Tristan, applique la velocite du store ici
         }
 
         protected override void exit(EtatPhysiqueState to)
@@ -42,6 +44,8 @@
             {
                 gaz.DetruireParticules();
             }
+
+            StateMachine.etatPhysiqueStore.linearVelocity = Vector2.zero; //TODO: tristan, store la vélocité ici
         }
 
         private void Update()

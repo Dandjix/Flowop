@@ -8,7 +8,6 @@ namespace EtatsPhysiques
 
         protected override void enter(EtatPhysiqueState fromState)
         {
-
             Player.SetActive(false);
 
             Vector2 playerPosition;
@@ -17,12 +16,15 @@ namespace EtatsPhysiques
 
             Player = joueurSolide;
             Player.transform.position = playerPosition;
+
             Player.SetActive(true);
+
+            joueurSolide.GetComponent<Rigidbody2D>().linearVelocity = StateMachine.etatPhysiqueStore.linearVelocity;
         }
 
         protected override void exit(EtatPhysiqueState from)
         {
-
+            Vector2 velocity = Player.GetComponent<Rigidbody2D>().linearVelocity;
         }
     }
 
