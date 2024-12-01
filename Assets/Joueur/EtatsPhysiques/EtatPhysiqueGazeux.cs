@@ -15,6 +15,7 @@
         private Rigidbody2D joueurRigidbody;
         protected override void enter(EtatPhysiqueState from)
         {
+            Vector2 veloInitiale = StateMachine.etatPhysiqueStore.linearVelocity;
             Player.SetActive(false);
             Vector2 playerPosition = Player.transform.position;
 
@@ -27,13 +28,13 @@
             {
                 Debug.LogError("Le joueur gazeux n'a pas de Rigidbody2D");
             }
+            joueurRigidbody.linearVelocity = veloInitiale;
             GazSuivi gaz = Player.GetComponent<GazSuivi>();
             if (gaz != null)
             {
-                gaz.CreerParticules();
+                gaz.CreerParticules(veloInitiale);
             }
 
-            //TODO : Tristan, applique la velocite du store ici
         }
 
         protected override void exit(EtatPhysiqueState to)
@@ -44,7 +45,8 @@
                 gaz.DetruireParticules();
             }
 
-            StateMachine.etatPhysiqueStore.linearVelocity = Vector2.zero; //TODO: tristan, store la vélocité ici
+            StateMachine.etatPhysiqueStore.linearVelocity = joueurRigidbody.linearVelocity;
+
         }
 
         private void Update()
