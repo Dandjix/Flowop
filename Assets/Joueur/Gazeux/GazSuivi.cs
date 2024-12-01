@@ -110,7 +110,7 @@ public class GazSuivi : MonoBehaviour
                     float force = forceSeparation * (separationMinimale - distance) / separationMinimale;
 
                     // Appliquer cette force de séparation
-                    rb.linearVelocity += directionDeSeparation * force * Time.deltaTime;
+                    rb.linearVelocity += (directionDeSeparation * force) / 144;
                 }
             }
         }
