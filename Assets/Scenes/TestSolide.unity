@@ -419,6 +419,18 @@ PrefabInstance:
       propertyPath: timeGazToVisqueux
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7873909724911919464, guid: 858f407d5aca742468325a911dfc375f, type: 3}
+      propertyPath: timeSolidToVisqueux
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8625220086833442036, guid: 858f407d5aca742468325a911dfc375f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 8625220086833442036, guid: 858f407d5aca742468325a911dfc375f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.35
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

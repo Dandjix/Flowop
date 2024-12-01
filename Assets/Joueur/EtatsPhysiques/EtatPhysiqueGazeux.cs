@@ -44,7 +44,7 @@
                 gaz.DetruireParticules();
             }
 
-            StateMachine.etatPhysiqueStore.linearVelocity = Vector2.zero; //TODO: tristan, store la vélocité ici
+            StateMachine.etatPhysiqueStore.LinearVelocity = Vector2.zero; //TODO: tristan, store la vélocité ici
         }
 
         private void Update()
