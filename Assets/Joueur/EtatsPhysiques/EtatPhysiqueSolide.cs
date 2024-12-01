@@ -19,12 +19,14 @@ namespace EtatsPhysiques
 
             Player.SetActive(true);
 
-            joueurSolide.GetComponent<Rigidbody2D>().linearVelocity = StateMachine.etatPhysiqueStore.linearVelocity;
+            joueurSolide.GetComponent<Rigidbody2D>().linearVelocity = StateMachine.etatPhysiqueStore.LinearVelocity;
         }
 
         protected override void exit(EtatPhysiqueState from)
         {
             Vector2 velocity = Player.GetComponent<Rigidbody2D>().linearVelocity;
+
+            StateMachine.etatPhysiqueStore.LinearVelocity = velocity;
         }
     }
 

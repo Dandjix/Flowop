@@ -99,11 +99,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   joueurGazeux: {fileID: 7344658187599161929}
-  vitesseMaxVerticale: 0
-  accelerationVerticale: 0
-  vitesseMaxHorizontale: 0
-  accelerationHorizontale: 0
-  amortissementLineaire: 0
+  vitesseMaxVerticale: 5
+  accelerationVerticale: 0.05
+  vitesseMaxHorizontale: 5
+  accelerationHorizontale: 0.05
+  amortissementLineaire: 0.5
 --- !u!114 &8677035353227159393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,7 +150,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4472481894427076759}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 18824433cec450e4183a9f8c4ce97a11, type: 3}
   m_Name: 
@@ -167,7 +167,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d09c12984f0c08c44bcf899ece1412af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  linearVelocity: {x: 0, y: 0}
 --- !u!114 &7873909724911919464
 MonoBehaviour:
   m_ObjectHideFlags: 0

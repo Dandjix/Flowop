@@ -146,6 +146,11 @@ public class JoueurVisqueux : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        ApplyValues();
+    }
+
     private void Update()
     {
 #if UNITY_EDITOR

@@ -15,7 +15,6 @@
         private Rigidbody2D joueurRigidbody;
         protected override void enter(EtatPhysiqueState from)
         {
-            Vector2 veloInitiale = StateMachine.etatPhysiqueStore.linearVelocity;
             Player.SetActive(false);
             Vector2 playerPosition = Player.transform.position;
 
@@ -28,13 +27,13 @@
             {
                 Debug.LogError("Le joueur gazeux n'a pas de Rigidbody2D");
             }
-            joueurRigidbody.linearVelocity = veloInitiale;
             GazSuivi gaz = Player.GetComponent<GazSuivi>();
             if (gaz != null)
             {
-                gaz.CreerParticules(veloInitiale);
+                gaz.CreerParticules(StateMachine.etatPhysiqueStore.LinearVelocity);
             }
 
+            joueurRigidbody.linearVelocity = StateMachine.etatPhysiqueStore.LinearVelocity;
         }
 
         protected override void exit(EtatPhysiqueState to)
@@ -45,43 +44,41 @@
                 gaz.DetruireParticules();
             }
 
-            StateMachine.etatPhysiqueStore.linearVelocity = joueurRigidbody.linearVelocity;
-
+            StateMachine.etatPhysiqueStore.LinearVelocity = joueurRigidbody.linearVelocity; 
         }
 
         private void Update()
         {
-            if (Player != null && joueurRigidbody != null)
+            if (Player == null || joueurRigidbody == null)
+                return;
+
+            Vector2 velocity = joueurRigidbody.linearVelocity;
+
+            // Handle vertical movement (Up Arrow)
+            if (Input.GetKey(KeyCode.UpArrow))
             {
-
-                if (Input.GetKey(KeyCode.UpArrow))
-                {
-                    joueurRigidbody.linearVelocity = new Vector2(joueurRigidbody.linearVelocityX, Mathf.Min(joueurRigidbody.linearVelocityY + accelerationVerticale, vitesseMaxVerticale));
-
-                }
-
-                if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow))
-                {
-                    if (Input.GetKey(KeyCode.LeftArrow))
-                    {
-                        joueurRigidbody.linearVelocity = new Vector2(Mathf.Max(joueurRigidbody.linearVelocityX - accelerationHorizontale, -vitesseMaxHorizontale), joueurRigidbody.linearVelocityY);
-
-                    }
-
-                    if (Input.GetKey(KeyCode.RightArrow))
-                    {
-                        joueurRigidbody.linearVelocity = new Vector2(Mathf.Min(joueurRigidbody.linearVelocityX + accelerationHorizontale, vitesseMaxHorizontale), joueurRigidbody.linearVelocityY);
-
-                    }
-                } else
-                {
-                    joueurRigidbody.linearVelocityX = Mathf.MoveTowards(joueurRigidbody.linearVelocityX, 0, amortissementLineaire * Time.deltaTime);                                     
-
-                }
-
-
-
+                velocity.y = Mathf.Min(velocity.y + accelerationVerticale, vitesseMaxVerticale);
             }
+
+            // Handle horizontal movement (Left and Right Arrows)
+            if(Input.GetKey(KeyCode.LeftArrow) ^ Input.GetKey(KeyCode.RightArrow))
+            {
+                if (Input.GetKey(KeyCode.LeftArrow))
+                {
+                    velocity.x = Mathf.Max(velocity.x - accelerationHorizontale, -vitesseMaxHorizontale);
+                }
+                else
+                {
+                    velocity.x = Mathf.Min(velocity.x + accelerationHorizontale, vitesseMaxHorizontale);
+                }
+            }
+            else
+            {
+                // Apply damping when no horizontal input
+                velocity.x = Mathf.MoveTowards(velocity.x, 0, amortissementLineaire);
+            }
+
+            joueurRigidbody.linearVelocity = velocity;
         }
     }
 
