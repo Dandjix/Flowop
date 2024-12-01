@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 630320858828195807}
   - component: {fileID: 6442540607296851615}
   - component: {fileID: 3347213540690419029}
+  - component: {fileID: 3305756380828092770}
   m_Layer: 0
   m_Name: feu
   m_TagString: Untagged
@@ -134,3 +135,16 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.28, y: 0.66566813}
   m_EdgeRadius: 0
+--- !u!114 &3305756380828092770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2040196119244522851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2f59d55af10eaa4fa7ce4c5405dc6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hot: 1

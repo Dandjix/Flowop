@@ -21,10 +21,10 @@ public class GooglyEyes : MonoBehaviour
         if (transform.parent != null)
         {
             parentRigidbody = transform.parent.GetComponent<Rigidbody2D>();
-            if (parentRigidbody == null)
-            {
-                Debug.LogError("Aucun Rigidbody2D trouvé sur le parent !");
-            }
+            //if (parentRigidbody == null)
+            //{
+            //    Debug.LogError("Aucun Rigidbody2D trouvé sur le parent !");
+            //}
         }
         else
         {
