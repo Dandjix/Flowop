@@ -2,5 +2,18 @@ using UnityEngine;
 
 public class EtatPhysiqueStore : MonoBehaviour
 {
-    public Vector2 linearVelocity = Vector2.zero;
+    private Vector2 linearVelocity = Vector2.zero;
+    public Vector2 LinearVelocity
+    {
+        get
+        {
+            //Debug.Log("linear velocity read !");
+            return linearVelocity;
+        }
+        set
+        {
+            linearVelocity = value;
+            //Debug.Log("linear velocity set !");
+        }
+    }
 }

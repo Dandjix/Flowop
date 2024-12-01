@@ -43,11 +43,11 @@ namespace EtatsPhysiques
 
             Player.SetActive(true);
 
-
+            Vector2 velocity = StateMachine.etatPhysiqueStore.LinearVelocity;
 
             foreach (var bone in joueurVisqueux_Component.GetSortedBones())
             {
-                bone.GetComponent<Rigidbody2D>().linearVelocity = StateMachine.etatPhysiqueStore.linearVelocity;
+                bone.GetComponent<Rigidbody2D>().linearVelocity = velocity;
             }
 
             //Debug.Log("entering : " + Player.name);
@@ -76,7 +76,7 @@ namespace EtatsPhysiques
 
             Player = playerPositionDummy;
 
-            StateMachine.etatPhysiqueStore.linearVelocity = oldVelocity;
+            StateMachine.etatPhysiqueStore.LinearVelocity = oldVelocity;
         }
 
 
