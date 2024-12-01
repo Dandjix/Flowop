@@ -83,8 +83,7 @@ public class GazSuivi : MonoBehaviour
         {
             if (rb != null)
             {
-                Destroy(rb.gameObject); 
-                Debug.Log("test");
+                Destroy(rb.gameObject);
             }
         }
 

@@ -27,7 +27,6 @@
             {
                 Debug.LogError("Le joueur gazeux n'a pas de Rigidbody2D");
             }
-            Debug.Log("TEST");
             GazSuivi gaz = Player.GetComponent<GazSuivi>();
             if (gaz != null)
             {
