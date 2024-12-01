@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6962400906263719962}
   m_Layer: 6
   m_Name: JoueurGazeux
-  m_TagString: Untagged
+  m_TagString: Joueur
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -61,7 +61,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bcd277a22980f434584cce6bd99b5ad4, type: 2}
+  - {fileID: 2100000, guid: b905960842d3ea747a40102b80543834, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

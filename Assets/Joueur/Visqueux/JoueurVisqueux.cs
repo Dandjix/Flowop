@@ -79,6 +79,8 @@ public class JoueurVisqueux : MonoBehaviour
             var rb = bone.gameObject.AddComponent<Rigidbody2D>();
             rb.gravityScale = originalGravity;
 
+            bone.tag = "Joueur";
+
             bone.gameObject.AddComponent<CircleCollider2D>();
 
             bone.gameObject.AddComponent<StateMachineReference>().StateMachine = stateMachine;
@@ -144,6 +146,11 @@ public class JoueurVisqueux : MonoBehaviour
             visqueuxBone.frequency_opposite = frequency_opposite;
             visqueuxBone.dampingRatio_opposite = damping_opposite;
         }
+    }
+
+    private void Start()
+    {
+        ApplyValues();
     }
 
     private void Update()
