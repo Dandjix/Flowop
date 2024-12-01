@@ -90,6 +90,7 @@ public class VisqueuxBone : MonoBehaviour
 
     public Vector2 originalLocalPos { get; private set; }
     public Quaternion originalRotation { get; private set; }
+    public bool allowStick { get; set; }
 
     private void Awake()
     {
@@ -100,14 +101,6 @@ public class VisqueuxBone : MonoBehaviour
     private void Start()
     {
         rigidbody = GetComponent<Rigidbody2D>();
-    }
-
-    private bool allowSticking
-    {
-        get
-        {
-            return false;
-        }
     }
 
     //private bool sticking = false;

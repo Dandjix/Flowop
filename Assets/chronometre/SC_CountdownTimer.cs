@@ -46,8 +46,8 @@ public class Chronometre : MonoBehaviour
     {
         int minutes = Mathf.FloorToInt(tempsEcoule / 60); // Minutes
         int secondes = Mathf.FloorToInt(tempsEcoule % 60); // Secondes
-        int millisecondes = Mathf.FloorToInt((tempsEcoule * 1000) % 1000); // Millisecondes
+        int millisecondes = Mathf.FloorToInt((tempsEcoule * 100) % 100); // Millisecondes
 
-        chronometreText.text = $"{minutes:00}:{secondes:00}:{millisecondes:000}";
+        chronometreText.text = $"{minutes:00}:{secondes:00}:{millisecondes:00}";
     }
 }
