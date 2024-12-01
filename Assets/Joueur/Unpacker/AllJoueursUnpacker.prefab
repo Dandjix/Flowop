@@ -99,11 +99,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   joueurGazeux: {fileID: 7344658187599161929}
-  vitesseMaxVerticale: 0
-  accelerationVerticale: 0
-  vitesseMaxHorizontale: 0
-  accelerationHorizontale: 0
-  amortissementLineaire: 0
+  vitesseMaxVerticale: 5
+  accelerationVerticale: 0.05
+  vitesseMaxHorizontale: 5
+  accelerationHorizontale: 0.05
+  amortissementLineaire: 0.5
 --- !u!114 &8677035353227159393
 MonoBehaviour:
   m_ObjectHideFlags: 0

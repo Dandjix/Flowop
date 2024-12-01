@@ -316,26 +316,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 504578454055414409, guid: 858f407d5aca742468325a911dfc375f, type: 3}
-      propertyPath: vitesseMaxVerticale
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 504578454055414409, guid: 858f407d5aca742468325a911dfc375f, type: 3}
-      propertyPath: accelerationVerticale
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 504578454055414409, guid: 858f407d5aca742468325a911dfc375f, type: 3}
-      propertyPath: amortissementLineaire
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 504578454055414409, guid: 858f407d5aca742468325a911dfc375f, type: 3}
-      propertyPath: vitesseMaxHorizontale
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 504578454055414409, guid: 858f407d5aca742468325a911dfc375f, type: 3}
-      propertyPath: accelerationHorizontale
-      value: 0.05
-      objectReference: {fileID: 0}
     - target: {fileID: 3315962335479022557, guid: 858f407d5aca742468325a911dfc375f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
