@@ -30,7 +30,7 @@
             GazSuivi gaz = Player.GetComponent<GazSuivi>();
             if (gaz != null)
             {
-                gaz.CreerParticules();
+                gaz.CreerParticules(StateMachine.etatPhysiqueStore.LinearVelocity);
             }
 
             //TODO : Tristan, applique la velocite du store ici
