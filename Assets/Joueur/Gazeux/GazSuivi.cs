@@ -57,7 +57,7 @@ public class GazSuivi : MonoBehaviour
         rbPrincipal.linearVelocity += forceSurObjetPrincipal * Time.deltaTime;
     }
 
-    public void CreerParticules()
+    public void CreerParticules(Vector2 veloInit)
     {
         particulesRigidbodies = new List<Rigidbody2D>();
         rbPrincipal = GetComponent<Rigidbody2D>();
@@ -74,7 +74,7 @@ public class GazSuivi : MonoBehaviour
             particule.transform.position = positionInitiale;
 
             // Initialisation de la vélocité des particules
-            rb.linearVelocity = Vector2.zero; // On commence avec une vélocité nulle
+            rb.linearVelocity = veloInit;
         }
     }
     public void DetruireParticules()
