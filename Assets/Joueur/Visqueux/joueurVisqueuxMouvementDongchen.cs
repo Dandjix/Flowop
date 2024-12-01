@@ -63,16 +63,24 @@ public class joueurVisqueuxMouvementDongchen : MonoBehaviour
     void playerControl()
     {
         // Mouvement horizontal
-        float hInupt = Input.GetAxis("Horizontal");
-
-        if (Mathf.Abs(hInupt) > 0.1)
+        float hInput = Input.GetAxis("Horizontal");
+        if (Mathf.Abs(hInput) > 0.1)
         {
             joueurVisqueux.UnStick(0);
             foreach (var rigidbody in rigidbodies)
             {
-                float newVelocity = vitesse * hInupt;
+                rigidbody.linearVelocityX = vitesse * hInput * smoothness;
+            }
+        }
 
-                rigidbody.linearVelocityX = newVelocity * smoothness;
+        // Grimper les rocks
+        float vInput = Input.GetAxis("Vertical");
+        if (Mathf.Abs(vInput) > 0.1 && touchingRock)
+        {
+            joueurVisqueux.UnStick(0);
+            foreach (var rigidbody in rigidbodies)
+            {
+                rigidbody.linearVelocityY = vitesse * vInput * smoothness;
             }
         }
 
