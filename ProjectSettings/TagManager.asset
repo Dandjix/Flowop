@@ -12,6 +12,7 @@ TagManager:
   - Piece Noire
   - Piece Rouge
   - Piece Verte
+  - Joueur
   layers:
   - Default
   - TransparentFX

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: dbc7edeadb4081ba3b36362ebf37a0d8
+guid: 4333aeb29faa22a46a69563af3e64bcd
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2064045574660133381
-    second: flocon_0
+      213: 3414701089094172137
+    second: vortex_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,12 +126,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: flocon_0
+      name: vortex_0
       rect:
         serializedVersion: 2
-        x: 1
+        x: 0
         y: 0
-        width: 63
+        width: 64
         height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bfd6a225c790b53e0800000000000000
-      internalID: -2064045574660133381
+      spriteID: 9edf8957c84736f20800000000000000
+      internalID: 3414701089094172137
       vertices: []
       indices: 
       edges: []
@@ -160,8 +160,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      flocon_0: -2064045574660133381
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
