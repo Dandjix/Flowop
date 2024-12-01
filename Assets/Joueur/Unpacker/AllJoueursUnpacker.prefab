@@ -100,7 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   joueurGazeux: {fileID: 7344658187599161929}
   vitesseMaxVerticale: 5
-  accelerationVerticale: 0.05
+  accelerationVerticale: 0.5
   vitesseMaxHorizontale: 5
   accelerationHorizontale: 0.05
   amortissementLineaire: 0.5
