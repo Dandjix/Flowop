@@ -70,7 +70,7 @@ public class JoueurVisqueux : MonoBehaviour
         return sortedBones;
     }
 
-    public void GenerateSprings()
+    public void GenerateSprings(EtatPhysiquesStateMachine stateMachine)
     {
         var bones = GetSortedBones();
 
@@ -80,6 +80,8 @@ public class JoueurVisqueux : MonoBehaviour
             rb.gravityScale = originalGravity;
 
             bone.gameObject.AddComponent<CircleCollider2D>();
+
+            bone.gameObject.AddComponent<StateMachineReference>().StateMachine = stateMachine;
 
             var prendrePiece = bone.gameObject.AddComponent<PrendrePiece>();
             prendrePiece.typePiece = PrendrePiece.TypePieceRamassee.PieceVerte;
@@ -150,12 +152,12 @@ public class JoueurVisqueux : MonoBehaviour
         FixedFramesTillNextStick = Mathf.Max(0, FixedFramesTillNextStick - 1);
     }
 
-    public void Setup()
-    {
-        spriteSkin = GetComponent<SpriteSkin>();
+    //public void Setup()
+    //{
+    //    spriteSkin = GetComponent<SpriteSkin>();
 
-        GenerateSprings();
-    }
+    //    GenerateSprings();
+    //}
 
     public Vector2 Center 
     {

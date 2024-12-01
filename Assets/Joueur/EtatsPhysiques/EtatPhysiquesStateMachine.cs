@@ -18,6 +18,13 @@ namespace EtatsPhysiques
 
         public void setState(EtatsPhysiques etat)
         {
+            if (etat == currentStateEnum)
+            {
+                return;
+            }
+
+            //Debug.Log("changing to state : " + etat);
+
             switch (etat)
             {
                 case EtatsPhysiques.Solide:
@@ -33,6 +40,19 @@ namespace EtatsPhysiques
         }
 
         public EtatPhysiqueState currentState { get; private set; }
+
+        public EtatsPhysiques currentStateEnum
+        {
+            get
+            {
+                if(currentState is EtatPhysiqueVisqueux)
+                    return EtatsPhysiques.Visqueux;
+                else if(currentState is EtatPhysiqueGazeux)
+                    return EtatsPhysiques.Gazeux;
+                else
+                    return EtatsPhysiques.Solide;
+            }
+        }
 
         private void setState(EtatPhysiqueState etat)
         {
