@@ -79,6 +79,8 @@ public class JoueurVisqueux : MonoBehaviour
             var rb = bone.gameObject.AddComponent<Rigidbody2D>();
             rb.gravityScale = originalGravity;
 
+            bone.tag = "Joueur";
+
             bone.gameObject.AddComponent<CircleCollider2D>();
 
             bone.gameObject.AddComponent<StateMachineReference>().StateMachine = stateMachine;
