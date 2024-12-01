@@ -21731,7 +21731,7 @@ MonoBehaviour:
 --- !u!114 &520471495
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 2298892668633175837, guid: 5d2f93f53a2f7c3409a3be1291c1b146, type: 3}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -59530,11 +59530,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4555401174659329929, guid: 1e6200400d210184eb11ce4e18a09a0e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.27
+      value: -4.95
       objectReference: {fileID: 0}
     - target: {fileID: 4555401174659329929, guid: 1e6200400d210184eb11ce4e18a09a0e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.07
+      value: 0.36
       objectReference: {fileID: 0}
     - target: {fileID: 4555401174659329929, guid: 1e6200400d210184eb11ce4e18a09a0e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -60197,7 +60197,7 @@ GameObject:
   - component: {fileID: 1494652545}
   - component: {fileID: 1494652544}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Chronometer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -60255,7 +60255,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ez
+  m_text: "Chronom\xE8tre"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
