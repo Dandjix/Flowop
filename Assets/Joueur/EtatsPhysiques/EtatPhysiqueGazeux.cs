@@ -47,7 +47,7 @@
             StateMachine.etatPhysiqueStore.LinearVelocity = joueurRigidbody.linearVelocity; 
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             if (Player == null || joueurRigidbody == null)
                 return;
@@ -79,6 +79,14 @@
             }
 
             joueurRigidbody.linearVelocity = velocity;
+
+            //debugText.text = "vmv : " + vitesseMaxVerticale +
+            //"\n accvert : " + accelerationVerticale +
+            //"\n vmh : " + vitesseMaxHorizontale +
+            //"\n acch : " + accelerationHorizontale +
+            //"\n amm lineaire : " + amortissementLineaire +
+            //"\n velocite = "+velocity
+            //;
         }
     }
 
