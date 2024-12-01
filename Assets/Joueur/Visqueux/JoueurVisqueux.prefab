@@ -413,8 +413,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vitesse: 5
   forceDeSaut: 9
+  dragDeSautInit: 0
   dragDeSaut: 5
   dragDecrease: 5
+  unstickingFrames: 10
+  stickyFactor: 0.5
   filterBas:
     useTriggers: 0
     useLayerMask: 0
@@ -429,6 +432,20 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 75
     maxNormalAngle: 105
+  filterRock:
+    useTriggers: 0
+    useLayerMask: 1
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 128
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
 --- !u!1 &5961873840575675703
 GameObject:
   m_ObjectHideFlags: 0
