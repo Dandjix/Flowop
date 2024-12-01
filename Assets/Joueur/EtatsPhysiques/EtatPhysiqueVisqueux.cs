@@ -39,7 +39,7 @@ namespace EtatsPhysiques
 
             Player.transform.position = playerPosition;
 
-            joueurVisqueux_Component.GenerateSprings();
+            joueurVisqueux_Component.GenerateSprings(StateMachine);
 
             Player.SetActive(true);
 
