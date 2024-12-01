@@ -9,8 +9,11 @@ public class joueurVisqueuxMouvementDongchen : MonoBehaviour
     private List<Rigidbody2D> rigidbodies = new List<Rigidbody2D>(12);
     [SerializeField] private float vitesse;
     [SerializeField] private float forceDeSaut;
-    [SerializeField] private float dragDeSaut, dragDecrease;
-    [SerializeField] private ContactFilter2D filterBas;
+    [SerializeField] private float dragDeSautInit, dragDeSaut, dragDecrease;
+    [SerializeField] private int unstickingFrames;
+    [SerializeField] private float stickyFactor;
+    private float smoothness;
+    [SerializeField] private ContactFilter2D filterBas, filterRock;
 
     private bool surSol
     {
@@ -18,6 +21,19 @@ public class joueurVisqueuxMouvementDongchen : MonoBehaviour
         {
             foreach (var rigidbody in rigidbodies) {
                 if (rigidbody.IsTouching(filterBas))
+                    return true;
+            }
+            return false;
+        }
+    }
+
+    private bool touchingRock
+    {
+        get
+        {
+            foreach (var rigidbody in rigidbodies)
+            {
+                if (rigidbody.IsTouching(filterRock))
                     return true;
             }
             return false;
@@ -40,39 +56,42 @@ public class joueurVisqueuxMouvementDongchen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        smoothness = touchingRock ? stickyFactor : 1;
         playerControl();
     }
 
     void playerControl()
     {
         // Mouvement horizontal
-        float hInupt = Input.GetAxis("Horizontal");
-
-        if (Mathf.Abs(hInupt) > 0.1)
+        float hInput = Input.GetAxis("Horizontal");
+        if (Mathf.Abs(hInput) > 0.1)
         {
+            joueurVisqueux.UnStick(0);
             foreach (var rigidbody in rigidbodies)
             {
-                float newVelocity = vitesse * hInupt;
-
-                rigidbody.linearVelocityX = newVelocity;
+                rigidbody.linearVelocityX = vitesse * hInput * smoothness;
             }
         }
 
-        if (Input.GetKey(KeyCode.E))
+        // Grimper les rocks
+        float vInput = Input.GetAxis("Vertical");
+        if (Mathf.Abs(vInput) > 0.1 && touchingRock)
         {
-            joueurVisqueux.UnStick(0.1f);
-        }
-
-
-        // Saut
-        if (Input.GetKeyDown(KeyCode.Space) && surSol)
-        {
-            joueurVisqueux.UnStick(0.3f);
-
+            joueurVisqueux.UnStick(0);
             foreach (var rigidbody in rigidbodies)
             {
-                rigidbody.AddForce(new Vector2(0, forceDeSaut), ForceMode2D.Impulse);
-                dragDeSaut = forceDeSaut;
+                rigidbody.linearVelocityY = vitesse * vInput * smoothness;
+            }
+        }
+
+        // Saut
+        if (Input.GetKeyDown(KeyCode.Space) && (surSol || touchingRock))
+        {
+            joueurVisqueux.UnStick(unstickingFrames);
+            foreach (var rigidbody in rigidbodies)
+            {
+                rigidbody.AddForce(new Vector2(0, forceDeSaut * smoothness), ForceMode2D.Impulse);
+                dragDeSaut = dragDeSautInit * smoothness;
                 sauter = true;
             }
         }

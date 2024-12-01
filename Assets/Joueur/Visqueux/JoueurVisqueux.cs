@@ -115,10 +115,18 @@ public class JoueurVisqueux : MonoBehaviour
     public void UnStick(float gracePeriodTotal)
     {
         gracePeriod = gracePeriodTotal;
-        foreach(var bone in GetSortedBones())
+        foreach (var bone in GetSortedBones())
         {
             var visqueuxBone = bone.GetComponent<VisqueuxBone>();
-
+            visqueuxBone.Sticking = false;
+        }
+    }
+    public void UnStick(int frames)
+    {
+        FixedFramesTillNextStick = frames;
+        foreach (var bone in GetSortedBones())
+        {
+            var visqueuxBone = bone.GetComponent<VisqueuxBone>();
             visqueuxBone.Sticking = false;
         }
     }
