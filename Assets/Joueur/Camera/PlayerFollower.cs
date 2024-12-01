@@ -17,4 +17,9 @@ public class PlayerFollower : MonoBehaviour
 
         transform.position = new Vector3(position.x,position.y,transform.position.z);
     }
+
+    private void Start()
+    {
+        transform.position = stateMachine.getPlayerPosition();
+    }
 }
