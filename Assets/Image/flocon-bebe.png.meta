@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      flocon-bebe_0: -2376143187919376783
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
