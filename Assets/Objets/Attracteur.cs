@@ -34,15 +34,14 @@ public class AttracteurSimple : MonoBehaviour
             // Recharger la scène si dans le rayon de téléportation
             if (distance <= rayonTeleportation)
             {
-                ReloadScene();
+                // Sauvegarder les informations dans PlayerPrefs
+                PlayerPrefs.SetFloat("TempsEcoule", Chronometre.Instance.TempsEcoule);
+                PlayerPrefs.SetInt("NombreDePieces", Interfacage.Instance.NombreDePieces);
+
+                // Charger la scène de fin
+                SceneManager.LoadScene("Winner");
             }
         }
-    }
-
-    private void ReloadScene()
-    {
-        // Recharger la scène actuelle
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private void OnDrawGizmosSelected()

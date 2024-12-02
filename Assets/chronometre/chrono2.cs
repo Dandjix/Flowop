@@ -1,20 +1,64 @@
 using UnityEngine;
-using TMPro; // Importez ce namespace
+using TMPro;
 
-public class WinnerScene : MonoBehaviour
+public class Chronometre : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI timerText; // Assurez-vous d'utiliser TextMeshProUGUI
+    public static Chronometre Instance; // Singleton pour accéder facilement à l'instance
+    public TextMeshProUGUI chronometreText; // Associez votre TextMeshPro ici
+    private float tempsEcoule = 0f; // Temps écoulé
+    private bool enCours = false; // Indique si le chrono tourne
+
+    public float TempsEcoule
+    {
+        get { return tempsEcoule; }
+    }
 
     void Start()
     {
-        // Vérifiez que l'objet est bien assigné
-        if (timerText != null)
+        Instance = this;
+        DemarrerChronometre();
+    }
+
+    // Démarre le chronomètre
+    public void DemarrerChronometre()
+    {
+        tempsEcoule = 0f;
+        enCours = true;
+    }
+
+    // Arrête le chronomètre
+    public void ArreterChronometre()
+    {
+        enCours = false;
+    }
+
+    // Redémarre le chronomètre
+    public void ResetChronometre()
+    {
+        tempsEcoule = 0f;
+        AfficherTemps();
+    }
+
+    private void Update()
+    {
+        if (enCours)
         {
-            timerText.text = "Temps écoulé : " + GameManager.timeElapsed.ToString("F2") + " secondes";
+            tempsEcoule += Time.deltaTime; // Incrémentation du temps
+            AfficherTemps();
         }
-        else
+    }
+
+    // Met à jour l'affichage
+    private void AfficherTemps()
+    {
+        int minutes = Mathf.FloorToInt(tempsEcoule / 60); // Minutes
+        int secondes = Mathf.FloorToInt(tempsEcoule % 60); // Secondes
+        int millisecondes = Mathf.FloorToInt((tempsEcoule * 100) % 100); // Millisecondes
+
+        if (chronometreText != null)
         {
-            Debug.LogError("Le champ timerText n'est pas assigné !");
+
+            chronometreText.text = $"{minutes:00}:{secondes:00}:{millisecondes:00}";
         }
     }
 }

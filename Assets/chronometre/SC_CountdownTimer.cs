@@ -1,14 +1,21 @@
-using UnityEngine;
+/*using UnityEngine;
 using TMPro;
 
 public class Chronometre : MonoBehaviour
 {
+    public static Chronometre Instance; // Singleton pour accéder facilement à l'instance
     public TextMeshProUGUI chronometreText; // Associez votre TextMeshPro ici
     private float tempsEcoule = 0f; // Temps écoulé
     private bool enCours = false; // Indique si le chrono tourne
 
+    public float TempsEcoule
+    {
+        get { return tempsEcoule; }
+    }
+
     void Start()
     {
+        Instance = this;
         DemarrerChronometre();
     }
 
@@ -51,3 +58,4 @@ public class Chronometre : MonoBehaviour
         chronometreText.text = $"{minutes:00}:{secondes:00}:{millisecondes:00}";
     }
 }
+*/
