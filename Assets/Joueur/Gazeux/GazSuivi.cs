@@ -4,13 +4,13 @@ using UnityEngine;
 public class GazSuivi : MonoBehaviour
 {
     [SerializeField] private GameObject particulePrefab;       // Le prefab de la particule
-    [SerializeField] private int nombreDeParticules = 15;      // Nombre de particules dans l'essaim
-    [SerializeField] private float rayonFormation = 2f;        // Rayon autour du centre dans lequel les particules se déplacent
-    [SerializeField] private float vitesseLerp = 5f;           // Vitesse de lerp (mouvement vers le centre)
-    [SerializeField] private float separationMinimale = 0.5f;  // Distance minimale entre les particules avant séparation
-    [SerializeField] private float forceSeparation = 1f;       // Force appliquée lorsque les particules sont trop proches
-    [SerializeField] private float facteurMouvementAleatoire = 0.1f; // Facteur de variation aléatoire du mouvement des particules
-    [SerializeField] private float distanceMaximale = 3f;      // Distance maximale de la corde
+    [SerializeField] private int nombreDeParticules;      // Nombre de particules dans l'essaim
+    [SerializeField] private float rayonFormation;        // Rayon autour du centre dans lequel les particules se déplacent
+    [SerializeField] private float vitesseLerp;           // Vitesse de lerp (mouvement vers le centre)
+    [SerializeField] private float separationMinimale;  // Distance minimale entre les particules avant séparation
+    [SerializeField] private float forceSeparation;       // Force appliquée lorsque les particules sont trop proches
+    [SerializeField] private float facteurMouvementAleatoire; // Facteur de variation aléatoire du mouvement des particules
+    [SerializeField] private float distanceMaximale;      // Distance maximale de la corde
 
     private List<Rigidbody2D> particulesRigidbodies;           // Liste des rigidbodies des particules
     private Rigidbody2D rbPrincipal;                          // Rigidbody de l'objet principal

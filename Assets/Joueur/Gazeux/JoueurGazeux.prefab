@@ -169,12 +169,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particulePrefab: {fileID: 8463757033255924922, guid: b6bae77561787df408d16572de1eb679, type: 3}
-  nombreDeParticules: 5
-  rayonFormation: 0
-  vitesseLerp: 15
+  nombreDeParticules: 20
+  rayonFormation: 0.7
+  vitesseLerp: 20
   separationMinimale: 6
-  forceSeparation: 1
-  facteurMouvementAleatoire: 3
+  forceSeparation: 0.3
+  facteurMouvementAleatoire: 0.5
   distanceMaximale: 1
 --- !u!114 &6962400906263719962
 MonoBehaviour:
