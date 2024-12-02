@@ -5,23 +5,7 @@ public class AttracteurSimple : MonoBehaviour
 {
     [SerializeField] private float rayonAttraction = 5f;    // Rayon d'attraction
     [SerializeField] private float forceAttraction = 10f;   // Intensité de la force d'attraction
-    [SerializeField] private GameObject positionTeleportationObject; // Point de téléportation
     [SerializeField] private float rayonTeleportation = 0.5f; // Rayon pour déclencher la téléportation
-
-    private Transform positionTeleportation;
-
-    private void Start()
-    {
-        // Vérifie et stocke le Transform du point de téléportation
-        if (positionTeleportationObject != null)
-        {
-            positionTeleportation = positionTeleportationObject.transform;
-        }
-        else
-        {
-            Debug.LogWarning("Aucun objet de position de téléportation défini !");
-        }
-    }
 
     private void FixedUpdate()
     {
@@ -47,18 +31,18 @@ public class AttracteurSimple : MonoBehaviour
                 }
             }
 
-            // Téléporter si dans le rayon de téléportation
-            if (distance <= rayonTeleportation && positionTeleportation != null)
+            // Recharger la scène si dans le rayon de téléportation
+            if (distance <= rayonTeleportation)
             {
-                TeleporterJoueur(joueur);
+                ReloadScene();
             }
         }
     }
 
-    private void TeleporterJoueur(GameObject joueur)
+    private void ReloadScene()
     {
+        // Recharger la scène actuelle
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-
     }
 
     private void OnDrawGizmosSelected()
