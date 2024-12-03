@@ -37,12 +37,12 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        // Vérifie si nous sommes dans la scène "level1" avant d'accepter la touche R
+        if (Input.GetKeyDown(KeyCode.R) && SceneManager.GetActiveScene().name == "level1")
         {
             Restart();
-            //  timeElapsed = Time.time - startTime;
-            //  SceneManager.LoadScene("Winner");
         }
+
         Vector2 joueurPos = transform.position;
         if (Mathf.Abs(joueurPos.x) > hBound || Mathf.Abs(joueurPos.y) > vBound)
         {
