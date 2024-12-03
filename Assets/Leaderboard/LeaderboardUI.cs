@@ -3,13 +3,12 @@ using UnityEngine.Networking;
 using TMPro;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.SceneManagement;
 
 public class LeaderboardUI : MonoBehaviour
 {
     public Transform scoreListContent; // Parent où les scores seront affichés
     public GameObject scoreItemPrefab; // Prefab pour un score
-    public string apiUrl = "https://flowop.codeky.fr/leaderboard"; // URL de votre API
+    public string apiUrl; // URL de votre API
 
     void Start()
     {
@@ -31,14 +30,17 @@ public class LeaderboardUI : MonoBehaviour
             string json = request.downloadHandler.text;
             List<ScoreData> scores = JsonHelper.FromJson<ScoreData>(json);
 
-            Debug.Log("TEST");
-            Debug.Log(scores.Count);
-            // Affiche les scores
-            foreach (var score in scores)
+            // Trier les scores par temps (du meilleur au pire)
+            scores.Sort((x, y) => x.time_ms.CompareTo(y.time_ms));
+
+            // Affiche les scores avec leur rang
+            for (int i = 0; i < scores.Count; i++)
             {
                 GameObject scoreItem = Instantiate(scoreItemPrefab, scoreListContent);
                 TMP_Text text = scoreItem.GetComponentInChildren<TMP_Text>();
-                text.text = $"{score.player} - {score.n_coins} pièces - {score.time_ms / 1000f:0.00}s";
+
+                // Ajouter le rang devant le nom du joueur et afficher les informations
+                text.text = $"{i + 1}. {scores[i].player} - {scores[i].n_coins} pièces - {scores[i].time_ms / 1000f:0.00}s";
             }
         }
     }

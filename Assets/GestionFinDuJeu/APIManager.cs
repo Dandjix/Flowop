@@ -4,7 +4,7 @@ using System.Collections;
 
 public class APIManager : MonoBehaviour
 {
-    private string apiUrl = "http://localhost:3000/leaderboard"; // Adresse de l'API
+    private string apiUrl = "https://flowop.codeky.fr/leaderboard"; // Adresse de l'API
 
     // Méthode pour envoyer un score
     public IEnumerator EnvoyerScore(string player, int timeMs, int nCoins)

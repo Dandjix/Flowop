@@ -32,7 +32,7 @@ public class FinDeJeu : MonoBehaviour
         int millisecondes = Mathf.FloorToInt((tempsEcoule * 100) % 100);
 
         texteTemps.text = $"{minutes:00}:{secondes:00}:{millisecondes:00}";
-        textePieces.text = $"Pi�ces : {nombreDePieces}";
+        textePieces.text = $"Pièces : {nombreDePieces}";
     }
 
     public void EnvoyerScore()
