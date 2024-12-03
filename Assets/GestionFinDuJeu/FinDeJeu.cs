@@ -5,42 +5,42 @@ using System.Collections;
 
 public class FinDeJeu : MonoBehaviour
 {
-    public TMP_Text texteTemps; // Référence au texte pour le temps
-    public TMP_Text textePieces; // Référence au texte pour le nombre de pièces
-    public TMP_InputField inputPseudo; // Référence au champ d'entrée pour le pseudo
-    public TMP_Text messageFeedback; // Référence pour afficher des messages (optionnel)
-    public APIManager apiManager; // Référence au gestionnaire API
+    public TMP_Text texteTemps; // Rï¿½fï¿½rence au texte pour le temps
+    public TMP_Text textePieces; // Rï¿½fï¿½rence au texte pour le nombre de piï¿½ces
+    public TMP_InputField inputPseudo; // Rï¿½fï¿½rence au champ d'entrï¿½e pour le pseudo
+    public TMP_Text messageFeedback; // Rï¿½fï¿½rence pour afficher des messages (optionnel)
+    public APIManager apiManager; // Rï¿½fï¿½rence au gestionnaire API
 
-    private float tempsEcoule; // Temps écoulé à afficher
-    private int nombreDePieces; // Nombre de pièces à afficher
+    private float tempsEcoule; // Temps ï¿½coulï¿½ ï¿½ afficher
+    private int nombreDePieces; // Nombre de piï¿½ces ï¿½ afficher
 
     void Start()
     {
-        // Lire les données à partir de PlayerPrefs
-        tempsEcoule = PlayerPrefs.GetFloat("TempsEcoule", 0f); // Valeur par défaut de 0f
-        nombreDePieces = PlayerPrefs.GetInt("NombreDePieces", 0); // Valeur par défaut de 0
+        // Lire les donnï¿½es ï¿½ partir de PlayerPrefs
+        tempsEcoule = PlayerPrefs.GetFloat("TempsEcoule", 0f); // Valeur par dï¿½faut de 0f
+        nombreDePieces = PlayerPrefs.GetInt("NombreDePieces", 0); // Valeur par dï¿½faut de 0
 
-        // Affichage des données
+        // Affichage des donnï¿½es
         AfficherResultats();
     }
 
     private void AfficherResultats()
     {
-        // Affichage du temps écoulé
+        // Affichage du temps ï¿½coulï¿½
         int minutes = Mathf.FloorToInt(tempsEcoule / 60);
         int secondes = Mathf.FloorToInt(tempsEcoule % 60);
         int millisecondes = Mathf.FloorToInt((tempsEcoule * 100) % 100);
 
         texteTemps.text = $"{minutes:00}:{secondes:00}:{millisecondes:00}";
-        textePieces.text = $"Pièces : {nombreDePieces}";
+        textePieces.text = $"Piï¿½ces : {nombreDePieces}";
     }
 
     public void EnvoyerScore()
     {
-        // Récupérer le pseudo entré
+        // Rï¿½cupï¿½rer le pseudo entrï¿½
         string pseudo = inputPseudo.text;
 
-        // Vérification : Pseudo non vide
+        // Vï¿½rification : Pseudo non vide
         if (string.IsNullOrWhiteSpace(pseudo))
         {
             AfficherMessageFeedback("Veuillez entrer un pseudo valide.");
@@ -54,7 +54,7 @@ public class FinDeJeu : MonoBehaviour
 
     private IEnumerator EnvoyerScoreCoroutine(string pseudo, int tempsMs, int pieces)
     {
-        // Appeler la méthode APIManager.EnvoyerScore et attendre la réponse
+        // Appeler la mï¿½thode APIManager.EnvoyerScore et attendre la rï¿½ponse
         yield return StartCoroutine(apiManager.EnvoyerScore(pseudo, tempsMs, pieces));
 
     }
@@ -69,7 +69,7 @@ public class FinDeJeu : MonoBehaviour
 
     public void RecommencerJeu()
     {
-        // Revenir à la scène 0 (par exemple le menu principal)
-        SceneManager.LoadScene(0);
+        // Revenir ï¿½ la scï¿½ne 0 (par exemple le menu principal)
+        SceneManager.LoadScene("Main Menu");
     }
 }
