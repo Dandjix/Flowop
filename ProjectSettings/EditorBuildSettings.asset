@@ -17,5 +17,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Winner.unity
     guid: bf7cab4eda2b07a9c8a18b2a4b2ef5f2
+  - enabled: 1
+    path: Assets/Scenes/Leaderboard.unity
+    guid: 103ba29cc22322647901b646450c13df
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
